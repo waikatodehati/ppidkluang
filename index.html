@@ -277,9 +277,9 @@
                 <input type="hidden" id="s-id">
                 
                 <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-4">
-                    <h4 class="text-xs font-extrabold text-slate-400 uppercase tracking-wider mb-2 border-b border-slate-100 pb-2 flex items-center gap-2"><i data-lucide="info" class="w-4 h-4"></i> Maklumat Asas</h4>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="md:col-span-2">
+                    <h4 class="text-xs font-extrabold text-slate-400 uppercase tracking-wider mb-2 border-b border-slate-100 pb-2 flex items-center gap-2"><i data-lucide="info" class="w-4 h-4"></i> Maklumat Asas & Lokasi</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="md:col-span-3">
                             <label class="block text-xs font-bold text-slate-600 mb-1.5 uppercase">Nama Sekolah</label>
                             <input required type="text" id="s-nama" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 uppercase focus:ring-2 focus:ring-emerald-500 bg-slate-50 transition-all" />
                         </div>
@@ -304,10 +304,34 @@
                             </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-600 mb-1.5 uppercase">Zon / DUN / Parlimen</label>
-                            <input required type="text" id="s-lokasiStr" placeholder="Cth: Zon 1 - Kahang - Sembrong" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 uppercase focus:ring-2 focus:ring-emerald-500 bg-slate-50 text-sm" />
+                            <label class="block text-xs font-bold text-slate-600 mb-1.5 uppercase">Zon Kawasan</label>
+                            <select id="s-zon" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 bg-slate-50 font-medium">
+                                <option value="1">Zon 1</option>
+                                <option value="2">Zon 2</option>
+                                <option value="3">Zon 3</option>
+                            </select>
                         </div>
-                        <div class="md:col-span-2">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-1.5 uppercase">DUN</label>
+                            <input type="text" id="s-dun" placeholder="Cth: Mengkibol" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 uppercase focus:ring-2 focus:ring-emerald-500 bg-slate-50 text-sm" />
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-1.5 uppercase">Parlimen</label>
+                            <input type="text" id="s-parlimen" placeholder="Cth: Kluang" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 uppercase focus:ring-2 focus:ring-emerald-500 bg-slate-50 text-sm" />
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-1.5 uppercase">Kawasan / Lokaliti</label>
+                            <input type="text" id="s-lokasi" placeholder="Cth: Bandar / Felda" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 uppercase focus:ring-2 focus:ring-emerald-500 bg-slate-50 text-sm" />
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-1.5 uppercase">Status Bangunan</label>
+                            <input type="text" id="s-statusBangunan" placeholder="Cth: Bangunan Sendiri" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 uppercase focus:ring-2 focus:ring-emerald-500 bg-slate-50 text-sm" />
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-1.5 uppercase">Keluasan Tanah</label>
+                            <input type="text" id="s-keluasan" placeholder="Cth: 2 Ekar" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 uppercase focus:ring-2 focus:ring-emerald-500 bg-slate-50 text-sm" />
+                        </div>
+                        <div class="md:col-span-3">
                             <label class="block text-xs font-bold text-slate-600 mb-1.5 uppercase">Alamat Penuh</label>
                             <textarea rows="2" id="s-alamat" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 uppercase focus:ring-2 focus:ring-emerald-500 bg-slate-50 text-sm"></textarea>
                         </div>
@@ -1005,7 +1029,22 @@
                 schools = cachedSchools;
                 // PATCH: Pastikan data sekolah dari cache lama dikemaskini dengan ID (Jika tiada)
                 let sSave = false;
-                schools.forEach((s, i) => { if(!s.id) { s.id = Date.now() + i; sSave = true; } });
+                schools.forEach((s, i) => { 
+                    if(!s.id) { s.id = Date.now() + i; sSave = true; } 
+                    
+                    // PAKSA MASUKKAN MAKLUMAT ASAS DARI TEMPLATE (Mengatasi masalah cache lama)
+                    const template = initialSchoolData.find(ts => ts.nama === s.nama);
+                    if (template) {
+                        // KEMASKINI AGRESIF: Tulis ganti terus data secara paksa dari template
+                        s.dun = template.dun;
+                        s.parlimen = template.parlimen;
+                        s.lokasi = template.lokasi;
+                        s.statusBangunan = template.statusBangunan;
+                        s.keluasan = template.keluasan;
+                        s.zon = template.zon;
+                        sSave = true;
+                    }
+                });
                 if(sSave) localStorage.setItem('schoolDataDB', JSON.stringify(schools));
             }
 
@@ -1058,8 +1097,11 @@
             }},
             gred: { label: "Gred", get: s => s.gred },
             zon: { label: "Zon", get: s => s.zon },
-            dun: { label: "DUN", get: s => s.dun },
-            parlimen: { label: "Parlimen", get: s => s.parlimen },
+            dun: { label: "DUN", get: s => s.dun || "-" },
+            parlimen: { label: "Parlimen", get: s => s.parlimen || "-" },
+            lokasi: { label: "Kawasan / Lokaliti", get: s => s.lokasi || "-" },
+            statusBangunan: { label: "Status Bangunan", get: s => s.statusBangunan || "-" },
+            keluasan: { label: "Keluasan Tanah", get: s => s.keluasan || "-" },
             statusOperasi: { label: "Status", get: s => s.statusOperasi },
             bilBilikDarjah: { label: "Bilik Darjah", get: s => s.bilBilikDarjah || 0 },
             tandasMurid: { label: "Tandas Murid", get: s => s.tandasMurid || 0 },
@@ -1216,7 +1258,13 @@
                             ${isClosed ? `<span class="inline-block px-2 py-0.5 text-[10px] font-bold text-red-700 bg-red-100 rounded-md">Ditutup</span>` : ''}
                         </div>
                         <h3 class="font-extrabold text-slate-800 text-sm md:text-base leading-tight mb-1 group-hover:text-sky-700 transition-colors">${s.nama}</h3>
-                        <p class="text-xs text-slate-500 font-mono mb-4">${s.noDaftar || '-'}</p>
+                        <p class="text-xs text-slate-500 font-mono mb-2">${s.noDaftar || '-'}</p>
+                        
+                        <div class="space-y-1.5 mb-4 text-[11px] text-slate-600 font-medium mt-1">
+                            <div class="flex items-center gap-1.5"><i data-lucide="map" class="w-3.5 h-3.5 text-slate-400"></i> Zon ${s.zon || '-'} &bull; DUN ${s.dun || '-'}</div>
+                            <div class="flex items-center gap-1.5"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-slate-400"></i> ${s.lokasi || '-'}</div>
+                            <div class="flex items-center gap-1.5 text-indigo-600/80"><i data-lucide="building" class="w-3.5 h-3.5"></i> ${s.statusBangunan || '-'} &bull; ${s.keluasan || '-'}</div>
+                        </div>
                         
                         <div class="mt-auto grid grid-cols-2 gap-3 pt-4 border-t border-slate-100">
                             <div class="flex flex-col">
@@ -1750,7 +1798,14 @@
                     document.getElementById('s-noDaftar').value = s.noDaftar;
                     document.getElementById('s-gred').value = s.gred;
                     document.getElementById('s-alamat').value = s.alamat;
-                    document.getElementById('s-lokasiStr').value = s.lokasi || '';
+                    
+                    document.getElementById('s-zon').value = s.zon || '1';
+                    document.getElementById('s-dun').value = s.dun || '';
+                    document.getElementById('s-parlimen').value = s.parlimen || '';
+                    document.getElementById('s-lokasi').value = s.lokasi || '';
+                    document.getElementById('s-statusBangunan').value = s.statusBangunan || '';
+                    document.getElementById('s-keluasan').value = s.keluasan || '';
+                    
                     document.getElementById('s-statusOperasi').value = s.statusOperasi;
                     
                     document.getElementById('s-pengetua').value = s.pengetua || '';
@@ -1792,12 +1847,16 @@
                 document.getElementById('s-noDaftar').value.toUpperCase(),
                 document.getElementById('s-gred').value,
                 document.getElementById('s-alamat').value.toUpperCase(),
-                document.getElementById('s-lokasiStr').value.includes('ZON 2') ? "2" : (document.getElementById('s-lokasiStr').value.includes('ZON 3') ? "3" : "1"),
-                "-", "-", document.getElementById('s-lokasiStr').value.toUpperCase(), "-",
+                document.getElementById('s-zon').value,
+                document.getElementById('s-dun').value.toUpperCase(),
+                document.getElementById('s-parlimen').value.toUpperCase(),
+                document.getElementById('s-lokasi').value.toUpperCase(),
+                document.getElementById('s-statusBangunan').value.toUpperCase(),
                 parseInt(document.getElementById('s-bilik').value)||0, 1, 
                 parseInt(document.getElementById('s-tMurid').value)||0, 
                 parseInt(document.getElementById('s-tGuru').value)||0, 
-                document.getElementById('s-pengawal').value.toUpperCase(), "-",
+                document.getElementById('s-pengawal').value.toUpperCase(),
+                document.getElementById('s-keluasan').value.toUpperCase(),
                 document.getElementById('s-statusOperasi').value,
                 parseInt(document.getElementById('s-muridPagi').value)||0,
                 parseInt(document.getElementById('s-muridPetang').value)||0,
