@@ -35,7 +35,7 @@
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen selection:bg-teal-200 selection:text-teal-900">
-    <div class="sticky top-0 z-30 w-full pt-2 md:pt-4 px-2 md:px-4 no-print pb-2">
+    <div id="top-nav-bar" class="hidden sticky top-0 z-30 w-full pt-2 md:pt-4 px-2 md:px-4 no-print pb-2">
         <nav class="bg-gradient-to-b from-sky-700 via-sky-800 to-sky-950 rounded-xl shadow-lg border border-sky-900 max-w-7xl mx-auto px-4 md:px-6 flex flex-col lg:flex-row items-center justify-between gap-4 py-3">
             
             <div class="flex items-center justify-between w-full lg:w-auto">
@@ -50,7 +50,7 @@
                 </div>
             </div>
 
-            <div class="flex flex-row items-center w-full lg:w-auto gap-2 overflow-x-auto pb-2 lg:pb-0 scrollbar-hide">
+            <div id="main-nav-menu" class="hidden flex-row items-center w-full lg:w-auto gap-2 overflow-x-auto pb-2 lg:pb-0 scrollbar-hide">
                 <button id="nav-profail" onclick="switchTab('profail')" class="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl transition-all text-sky-100 hover:bg-sky-800 hover:text-white font-medium group relative shrink-0">
                     <i data-lucide="layout-grid" class="w-5 h-5 shrink-0 transition-transform group-hover:scale-110"></i>
                     <span class="block text-sm font-bold whitespace-nowrap">PROFIL SEKOLAH</span>
@@ -165,8 +165,18 @@
     </footer>
 
     <!-- MODAL AUTH / LOGIN & REGISTER -->
-    <div id="modal-auth" class="fixed inset-0 bg-slate-900/80 backdrop-blur-md z-[70] hidden flex items-center justify-center p-4 opacity-100 transition-opacity">
-        <div class="bg-white rounded-2xl w-full max-w-md shadow-2xl overflow-hidden transform transition-all">
+    <div id="modal-auth" class="fixed inset-0 bg-gradient-to-br from-slate-900 via-sky-900 to-slate-950 z-[100] hidden flex flex-col items-center justify-center p-4 opacity-100 transition-opacity">
+        
+        <!-- Logo & Tajuk Paparan Hadapan -->
+        <div class="mb-6 md:mb-8 text-center text-white animate-[modal-enter_0.3s_ease-out]">
+            <div class="w-20 h-20 md:w-24 md:h-24 bg-white rounded-3xl mx-auto flex items-center justify-center p-2 mb-4 shadow-2xl border-4 border-slate-800">
+                <img src="logo ppid kluang.ico" alt="Logo PPID Kluang" class="w-full h-full object-contain" onerror="this.src='https://placehold.co/100x100/0284c7/ffffff?text=PPID'">
+            </div>
+            <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight uppercase drop-shadow-md">PPID KLUANG</h1>
+            <p class="text-sky-300 text-xs md:text-sm font-bold mt-1.5 tracking-widest uppercase">Sistem Maklumat Bersepadu</p>
+        </div>
+
+        <div class="bg-white rounded-2xl w-full max-w-md shadow-2xl overflow-hidden transform transition-all animate-[modal-enter_0.4s_ease-out]">
             <div class="bg-gradient-to-r from-sky-700 to-sky-900 text-white px-6 py-4 flex items-center justify-between">
                 <h2 id="auth-modal-title" class="text-lg font-bold flex items-center gap-2"><i data-lucide="lock" class="w-5 h-5"></i> Log Masuk Sistem</h2>
             </div>
@@ -1594,8 +1604,12 @@
         const applyAdminState = () => {
             const btnToggle = document.getElementById('btn-admin-toggle');
             const navAuthText = document.getElementById('nav-auth-text');
+            const mainNavMenu = document.getElementById('main-nav-menu');
+            const topNavBar = document.getElementById('top-nav-bar');
             
             if (isAdmin) {
+                if (topNavBar) topNavBar.classList.remove('hidden');
+                
                 btnToggle.innerHTML = '<i data-lucide="shield-off" class="w-5 h-5 shrink-0"></i><span id="nav-auth-text" class="block text-sm font-bold whitespace-nowrap">LOG KELUAR</span>';
                 btnToggle.classList.replace('bg-sky-950', 'bg-red-700');
                 btnToggle.classList.replace('hover:bg-sky-900', 'hover:bg-red-800');
@@ -1604,7 +1618,14 @@
                 document.getElementById('btn-add-school').classList.add('flex');
                 document.getElementById('btn-add-teacher').classList.remove('hidden');
                 document.getElementById('btn-add-teacher').classList.add('flex');
+                
+                if(mainNavMenu) {
+                    mainNavMenu.classList.remove('hidden');
+                    mainNavMenu.classList.add('flex');
+                }
             } else {
+                if (topNavBar) topNavBar.classList.add('hidden');
+                
                 btnToggle.innerHTML = '<i data-lucide="shield" class="w-5 h-5 shrink-0"></i><span id="nav-auth-text" class="block text-sm font-bold whitespace-nowrap">AKSES ADMIN</span>';
                 btnToggle.classList.replace('bg-red-700', 'bg-sky-950');
                 btnToggle.classList.replace('hover:bg-red-800', 'hover:bg-sky-900');
@@ -1613,6 +1634,11 @@
                 document.getElementById('btn-add-school').classList.remove('flex');
                 document.getElementById('btn-add-teacher').classList.add('hidden');
                 document.getElementById('btn-add-teacher').classList.remove('flex');
+                
+                if(mainNavMenu) {
+                    mainNavMenu.classList.add('hidden');
+                    mainNavMenu.classList.remove('flex');
+                }
             }
             
             document.querySelectorAll('.admin-only').forEach(el => {
