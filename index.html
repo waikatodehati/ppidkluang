@@ -19,6 +19,34 @@
         .modal-enter { opacity: 0; transform: scale(0.95); }
         .modal-enter-active { opacity: 1; transform: scale(1); transition: opacity 200ms ease-out, transform 200ms ease-out; }
         
+        .custom-select-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            z-index: 50;
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            margin-top: 0.25rem;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+        .custom-select-container.open .custom-select-dropdown {
+            display: block;
+        }
+        .custom-select-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 40;
+        }
+        .custom-select-container.open .custom-select-backdrop {
+            display: block;
+        }
+
         @media print {
             body { background-color: white !important; padding: 0 !important; margin: 0 !important; font-size: 12pt;}
             .no-print, nav, header, #search-filter-section, .border-b.overflow-x-auto, #laporan-config-panel { display: none !important; }
@@ -1388,6 +1416,68 @@
             document.querySelectorAll('.col-check').forEach(cb => { cb.checked = checked; updateReportSelection(); });
         };
 
+        const toggleCustomSelect = (id) => {
+            const container = document.getElementById(id);
+            if (container) {
+                // Close others
+                document.querySelectorAll('.custom-select-container').forEach(c => {
+                    if (c.id !== id) c.classList.remove('open');
+                });
+                container.classList.toggle('open');
+            }
+        };
+
+        const closeAllCustomSelects = () => {
+            document.querySelectorAll('.custom-select-container').forEach(c => c.classList.remove('open'));
+        };
+
+        const updateCustomSelectText = (selectId, labelId, prefixText) => {
+            const container = document.getElementById(selectId);
+            const labelEl = document.getElementById(labelId);
+            if (!container || !labelEl) return;
+            
+            const checkedBoxes = Array.from(container.querySelectorAll('input[type="checkbox"]:not(.select-all-cb):checked'));
+            const totalBoxes = container.querySelectorAll('input[type="checkbox"]:not(.select-all-cb)').length;
+            
+            if (checkedBoxes.length === 0) {
+                 labelEl.innerHTML = `<span class="text-slate-400 font-normal">Sila pilih...</span>`;
+            } else if (checkedBoxes.length === totalBoxes) {
+                 labelEl.innerHTML = `<span class="font-bold text-slate-700">${prefixText} (Semua)</span>`;
+            } else if (checkedBoxes.length <= 2) {
+                 const texts = checkedBoxes.map(cb => cb.getAttribute('data-label') || cb.value);
+                 labelEl.innerHTML = `<span class="font-bold text-slate-700 truncate block">${texts.join(', ')}</span>`;
+            } else {
+                 labelEl.innerHTML = `<span class="font-bold text-slate-700">${prefixText} (${checkedBoxes.length} dipilih)</span>`;
+            }
+            
+            // Sync with existing report selection logic
+            updateReportSelection();
+        };
+
+        const handleSelectAllChange = (e, selectId, labelId, prefixText) => {
+            const checked = e.target.checked;
+            const container = document.getElementById(selectId);
+            if (!container) return;
+            
+            container.querySelectorAll('input[type="checkbox"]:not(.select-all-cb)').forEach(cb => {
+                cb.checked = checked;
+            });
+            updateCustomSelectText(selectId, labelId, prefixText);
+        };
+
+        const handleItemChange = (selectId, labelId, prefixText, selectAllCbId) => {
+            const container = document.getElementById(selectId);
+            const selectAllCb = document.getElementById(selectAllCbId);
+            if (!container || !selectAllCb) return;
+
+            const totalBoxes = container.querySelectorAll('input[type="checkbox"]:not(.select-all-cb)').length;
+            const checkedBoxes = container.querySelectorAll('input[type="checkbox"]:not(.select-all-cb):checked').length;
+            
+            selectAllCb.checked = (totalBoxes === checkedBoxes && totalBoxes > 0);
+            updateCustomSelectText(selectId, labelId, prefixText);
+        };
+
+
         const updateReportSelection = () => {
             selectedReportCategories = Array.from(document.querySelectorAll('.cat-check:checked')).map(cb => cb.value);
             selectedReportZons = Array.from(document.querySelectorAll('.zon-check:checked')).map(cb => cb.value);
@@ -1399,20 +1489,87 @@
         const renderLaporan = () => {
             const container = document.getElementById('section-laporan');
             if (!container.innerHTML.trim()) {
-                // Initial render of config panel
-                let catHtml = ['SAKNJ', 'TAJ', 'TAHFIZ', 'PONDOK', 'SWASTA'].map(c => `
-                    <label class="flex items-center gap-2 text-sm cursor-pointer hover:bg-slate-50 p-1.5 rounded"><input type="checkbox" value="${c}" class="cat-check accent-sky-600" onchange="updateReportSelection()"> ${getCategoryLabel(c)}</label>
+                
+                // 1. Kategori Institusi
+                let catListItems = ['SAKNJ', 'TAJ', 'TAHFIZ', 'PONDOK', 'SWASTA'].map(c => `
+                    <label class="flex items-center gap-2.5 text-sm cursor-pointer hover:bg-slate-50 p-2 rounded-lg transition-colors">
+                        <input type="checkbox" value="${c}" data-label="${getCategoryLabel(c)}" class="cat-check accent-sky-600 w-4 h-4 rounded border-slate-300" onchange="handleItemChange('dd-kategori', 'lbl-kategori', 'Kategori', 'all-cat')"> 
+                        <span class="font-medium text-slate-700">${getCategoryLabel(c)}</span>
+                    </label>
                 `).join('');
-                let zonHtml = ['1','2','3'].map(z => `
-                    <label class="flex items-center gap-2 text-sm cursor-pointer hover:bg-slate-50 p-1.5 rounded"><input type="checkbox" value="${z}" class="zon-check accent-sky-600" onchange="updateReportSelection()"> Zon ${z}</label>
+                
+                let customSelectKategori = `
+                    <div id="dd-kategori" class="custom-select-container relative w-full">
+                        <div class="custom-select-backdrop" onclick="closeAllCustomSelects()"></div>
+                        <button type="button" onclick="toggleCustomSelect('dd-kategori')" class="w-full flex items-center justify-between px-4 py-2.5 bg-white border border-slate-200 rounded-xl hover:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-500/20 transition-all text-sm shadow-sm text-left">
+                            <div id="lbl-kategori" class="truncate w-full pr-2"><span class="text-slate-400 font-normal">Sila pilih...</span></div>
+                            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 shrink-0"></i>
+                        </button>
+                        <div class="custom-select-dropdown p-2">
+                            <label class="flex items-center gap-2.5 text-sm cursor-pointer hover:bg-slate-50 p-2 rounded-lg transition-colors border-b border-slate-100 mb-1 pb-2">
+                                <input type="checkbox" id="all-cat" class="select-all-cb accent-sky-600 w-4 h-4 rounded border-slate-300" onchange="handleSelectAllChange(event, 'dd-kategori', 'lbl-kategori', 'Kategori')"> 
+                                <span class="font-bold text-slate-800">Pilih Semua</span>
+                            </label>
+                            ${catListItems}
+                        </div>
+                    </div>
+                `;
+
+                // 2. Pilihan Zon
+                let zonListItems = ['1','2','3'].map(z => `
+                    <label class="flex items-center gap-2.5 text-sm cursor-pointer hover:bg-slate-50 p-2 rounded-lg transition-colors">
+                        <input type="checkbox" value="${z}" data-label="Zon ${z}" class="zon-check accent-sky-600 w-4 h-4 rounded border-slate-300" onchange="handleItemChange('dd-zon', 'lbl-zon', 'Zon', 'all-zon')"> 
+                        <span class="font-medium text-slate-700">Zon ${z}</span>
+                    </label>
                 `).join('');
-                let colHtml = Object.keys(reportColumnsAvailable).map(k => `
-                    <label class="flex items-center gap-2 text-sm cursor-pointer hover:bg-slate-50 p-1.5 rounded w-full sm:w-auto break-inside-avoid"><input type="checkbox" value="${k}" class="col-check accent-sky-600" onchange="updateReportSelection()"> <span class="truncate">${reportColumnsAvailable[k].label}</span></label>
+                
+                let customSelectZon = `
+                    <div id="dd-zon" class="custom-select-container relative w-full">
+                        <div class="custom-select-backdrop" onclick="closeAllCustomSelects()"></div>
+                        <button type="button" onclick="toggleCustomSelect('dd-zon')" class="w-full flex items-center justify-between px-4 py-2.5 bg-white border border-slate-200 rounded-xl hover:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-500/20 transition-all text-sm shadow-sm text-left">
+                            <div id="lbl-zon" class="truncate w-full pr-2"><span class="text-slate-400 font-normal">Sila pilih...</span></div>
+                            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 shrink-0"></i>
+                        </button>
+                        <div class="custom-select-dropdown p-2">
+                            <label class="flex items-center gap-2.5 text-sm cursor-pointer hover:bg-slate-50 p-2 rounded-lg transition-colors border-b border-slate-100 mb-1 pb-2">
+                                <input type="checkbox" id="all-zon" class="select-all-cb accent-sky-600 w-4 h-4 rounded border-slate-300" onchange="handleSelectAllChange(event, 'dd-zon', 'lbl-zon', 'Zon')"> 
+                                <span class="font-bold text-slate-800">Pilih Semua</span>
+                            </label>
+                            ${zonListItems}
+                        </div>
+                    </div>
+                `;
+
+                // 3. Pilihan Kolum
+                let colListItems = Object.keys(reportColumnsAvailable).map(k => `
+                    <label class="flex items-center gap-2.5 text-sm cursor-pointer hover:bg-slate-50 p-2 rounded-lg transition-colors">
+                        <input type="checkbox" value="${k}" data-label="${reportColumnsAvailable[k].label}" class="col-check accent-sky-600 w-4 h-4 rounded border-slate-300" onchange="handleItemChange('dd-kolum', 'lbl-kolum', 'Kolum', 'all-col')"> 
+                        <span class="font-medium text-slate-700 truncate" title="${reportColumnsAvailable[k].label}">${reportColumnsAvailable[k].label}</span>
+                    </label>
                 `).join('');
+                
+                let customSelectKolum = `
+                    <div id="dd-kolum" class="custom-select-container relative w-full">
+                        <div class="custom-select-backdrop" onclick="closeAllCustomSelects()"></div>
+                        <button type="button" onclick="toggleCustomSelect('dd-kolum')" class="w-full flex items-center justify-between px-4 py-2.5 bg-white border border-slate-200 rounded-xl hover:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-500/20 transition-all text-sm shadow-sm text-left">
+                            <div id="lbl-kolum" class="truncate w-full pr-2"><span class="text-slate-400 font-normal">Sila pilih...</span></div>
+                            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 shrink-0"></i>
+                        </button>
+                        <div class="custom-select-dropdown p-2 sm:w-[400px] right-0 sm:right-auto z-[60]">
+                            <label class="flex items-center gap-2.5 text-sm cursor-pointer hover:bg-slate-50 p-2 rounded-lg transition-colors border-b border-slate-100 mb-2 pb-2 sticky top-0 bg-white z-10">
+                                <input type="checkbox" id="all-col" class="select-all-cb accent-sky-600 w-4 h-4 rounded border-slate-300" onchange="handleSelectAllChange(event, 'dd-kolum', 'lbl-kolum', 'Kolum')"> 
+                                <span class="font-bold text-slate-800">Pilih Semua Kolum</span>
+                            </label>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-1 max-h-[300px] overflow-y-auto pr-1">
+                                ${colListItems}
+                            </div>
+                        </div>
+                    </div>
+                `;
 
                 container.innerHTML = `
-                    <div id="laporan-config-panel" class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 no-print space-y-5">
-                        <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-2 gap-4">
+                    <div id="laporan-config-panel" class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 no-print space-y-6">
+                        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                             <h3 class="font-extrabold text-slate-800 text-lg flex items-center gap-2"><i data-lucide="settings-2" class="w-5 h-5 text-sky-600"></i> Tetapan Laporan</h3>
                             <div class="flex flex-wrap items-center gap-2">
                                 <a href="https://docs.google.com/spreadsheets/d/1SYmCl9r6D78_5-_A5V1z5SpCt8Bf0Itl8wlBxjlfeKo/edit?pli=1&gid=1970484863#gid=1970484863" target="_blank" class="flex items-center gap-2 bg-slate-700 hover:bg-slate-800 text-white px-3 py-2 rounded-xl text-sm font-medium transition-colors shadow-sm" title="Buka hamparan pangkalan data di Google Sheets">
@@ -1437,36 +1594,37 @@
                             </div>
                         </div>
                         
-                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                            <div class="space-y-2">
-                                <div class="flex items-center justify-between border-b border-slate-100 pb-2"><h4 class="font-bold text-xs uppercase text-slate-500 tracking-wider">Kategori Institusi</h4> <label class="text-[10px] text-sky-600 font-bold cursor-pointer"><input type="checkbox" onchange="toggleAllCategories(event)" class="mr-1 accent-sky-600">Semua</label></div>
-                                <div class="space-y-1">${catHtml}</div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 bg-slate-50 p-4 rounded-xl border border-slate-100 items-end z-30 relative">
+                            <div class="space-y-1.5 w-full">
+                                <label class="font-bold text-xs uppercase text-slate-500 tracking-wider">Kategori Institusi</label>
+                                ${customSelectKategori}
                             </div>
-                            <div class="space-y-2">
-                                <div class="flex items-center justify-between border-b border-slate-100 pb-2"><h4 class="font-bold text-xs uppercase text-slate-500 tracking-wider">Pilihan Zon</h4> <label class="text-[10px] text-sky-600 font-bold cursor-pointer"><input type="checkbox" onchange="toggleAllZons(event)" class="mr-1 accent-sky-600">Semua</label></div>
-                                <div class="flex flex-col gap-1">${zonHtml}</div>
-                                <div class="mt-4 pt-3 border-t border-slate-100 space-y-3">
-                                    <label class="flex items-center justify-start gap-2 text-sm font-bold text-slate-700 cursor-pointer p-1.5 bg-slate-50 rounded-lg text-left"><input type="checkbox" id="cb-show-total" class="accent-sky-600 w-4 h-4" onchange="updateReportSelection()"> Jumlah keseluruhan</label>
-                                    
-                                    <div class="space-y-1.5">
-                                        <h4 class="font-bold text-[11px] uppercase text-slate-500 tracking-wider">Susunan Data</h4>
-                                        <select id="report-sort" onchange="updateReportSelection()" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-500/50 text-sm font-bold text-slate-700">
-                                            <option value="kategori_az">Kategori & Nama (A-Z)</option>
-                                            <option value="nama_az">Nama Sekolah (A-Z)</option>
-                                            <option value="pendaftaran">No. Pendaftaran</option>
-                                            <option value="zon">Zon (1-3)</option>
-                                            <option value="gred">Gred / Kategori Institusi</option>
-                                            <option value="parlimen">Parlimen (A-Z)</option>
-                                            <option value="lelaki_desc">Murid Lelaki / Pagi (Tertinggi)</option>
-                                            <option value="perempuan_desc">Murid Perempuan / Petang (Tertinggi)</option>
-                                        </select>
-                                    </div>
-                                </div>
+                            <div class="space-y-1.5 w-full z-20 relative">
+                                <label class="font-bold text-xs uppercase text-slate-500 tracking-wider">Pilihan Zon</label>
+                                ${customSelectZon}
                             </div>
-                            <div class="space-y-2 lg:col-span-3">
-                                <div class="flex items-center justify-between border-b border-slate-100 pb-2"><h4 class="font-bold text-xs uppercase text-slate-500 tracking-wider">Pilihan Kolum (Data)</h4> <label class="text-[10px] text-sky-600 font-bold cursor-pointer"><input type="checkbox" onchange="toggleAllCols(event)" class="mr-1 accent-sky-600">Semua</label></div>
-                                <div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-1">${colHtml}</div>
+                            <div class="space-y-1.5 w-full z-10 relative">
+                                <label class="font-bold text-xs uppercase text-slate-500 tracking-wider">Data / Kolum Paparan</label>
+                                ${customSelectKolum}
                             </div>
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
+                             <label class="flex items-center justify-start gap-2 text-sm font-bold text-slate-700 cursor-pointer p-2.5 bg-slate-50 border border-slate-200 rounded-xl hover:bg-slate-100 transition-colors w-full sm:w-auto"><input type="checkbox" id="cb-show-total" class="accent-sky-600 w-4 h-4 rounded border-slate-300" onchange="updateReportSelection()"> <i data-lucide="calculator" class="w-4 h-4 text-sky-600"></i> Papar Baris Jumlah Keseluruhan</label>
+                             
+                             <div class="flex items-center gap-3 w-full sm:w-auto">
+                                <label class="font-bold text-[11px] uppercase text-slate-500 tracking-wider whitespace-nowrap hidden sm:block">Susunan:</label>
+                                <select id="report-sort" onchange="updateReportSelection()" class="w-full sm:w-64 px-4 py-2.5 rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-sky-500/50 text-sm font-bold text-slate-700 shadow-sm cursor-pointer">
+                                    <option value="kategori_az">Kategori & Nama (A-Z)</option>
+                                    <option value="nama_az">Nama Sekolah (A-Z)</option>
+                                    <option value="pendaftaran">No. Pendaftaran</option>
+                                    <option value="zon">Zon (1-3)</option>
+                                    <option value="gred">Gred / Kategori Institusi</option>
+                                    <option value="parlimen">Parlimen (A-Z)</option>
+                                    <option value="lelaki_desc">Murid Lelaki / Pagi (Tertinggi)</option>
+                                    <option value="perempuan_desc">Murid Perempuan / Petang (Tertinggi)</option>
+                                </select>
+                             </div>
                         </div>
                     </div>
                     <div id="laporan-result-container" class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden print-break-avoid w-full">
@@ -1476,6 +1634,21 @@
                     </div>
                 `;
                 lucide.createIcons();
+                
+                // Initialize custom selects logic to be unchecked on first load
+                const selAllCatBtn = document.getElementById('all-cat');
+                const selAllZonBtn = document.getElementById('all-zon');
+                const selAllColBtn = document.getElementById('all-col');
+                
+                if(selAllCatBtn) { selAllCatBtn.checked = false; handleSelectAllChange({target: selAllCatBtn}, 'dd-kategori', 'lbl-kategori', 'Kategori'); }
+                if(selAllZonBtn) { selAllZonBtn.checked = false; handleSelectAllChange({target: selAllZonBtn}, 'dd-zon', 'lbl-zon', 'Zon'); }
+                if(selAllColBtn) { 
+                    document.querySelectorAll('.col-check').forEach(cb => {
+                        cb.checked = false;
+                    });
+                    handleItemChange('dd-kolum', 'lbl-kolum', 'Kolum', 'all-col');
+                }
+                
                 updateReportSelection();
             } else {
                 generateReport();
