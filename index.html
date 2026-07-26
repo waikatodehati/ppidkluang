@@ -412,6 +412,26 @@
     </div>
 
     <script>
+        // --- FUNGSI KESELAMATAN (ANTI-COPY CODE & INSPECT ELEMENT) ---
+        // Menghalang Klik Kanan (Context Menu)
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        
+        // Menghalang jalan pintas papan kekunci (Keyboard Shortcuts)
+        document.addEventListener('keydown', function(e) {
+            // Halang butang F12 (Developer Tools)
+            if (e.key === 'F12' || e.keyCode === 123) e.preventDefault();
+            
+            // Halang Ctrl+Shift+I / J / C (Buka Developer Tools)
+            if (e.ctrlKey && e.shiftKey && ['I','i','J','j','C','c'].includes(e.key)) e.preventDefault();
+            
+            // Halang Ctrl+U (View Source) dan Ctrl+S (Save As)
+            if (e.ctrlKey && ['U','u','S','s'].includes(e.key)) e.preventDefault();
+            
+            // Halang Command+U dan Command+S (Untuk pengguna Mac OS)
+            if (e.metaKey && ['u','s'].includes(e.key.toLowerCase())) e.preventDefault();
+        });
+        // ---------------------------------------------------------------
+
         // State management variables
         let deletedSchoolsBlacklist = [];
         let deletedTeachersBlacklist = [];
