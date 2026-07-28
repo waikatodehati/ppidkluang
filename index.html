@@ -1714,7 +1714,7 @@
                             </div>
                         </div>
                         
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 bg-slate-50 p-4 rounded-xl border border-slate-100 items-end z-30 relative">
+                        <div id="laporan-filter-dropdowns" class="grid grid-cols-1 md:grid-cols-3 gap-5 bg-slate-50 p-4 rounded-xl border border-slate-100 items-end z-30 relative">
                             <div class="space-y-1.5 w-full">
                                 <label class="font-bold text-xs uppercase text-slate-500 tracking-wider">Kategori Institusi</label>
                                 ${customSelectKategori}
@@ -2540,6 +2540,12 @@
                     },
                     body: JSON.stringify(payload)
                 });
+
+                // Sembunyikan kotak pilihan zon/kategori/kolum selepas berjaya simpan
+                const filterBox = document.getElementById('laporan-filter-dropdowns');
+                if (filterBox) {
+                    filterBox.style.display = 'none';
+                }
 
                 showMessage("Berjaya Disegerak!", "Data pangkalan data sekolah dan guru PPID Kluang telah berjaya dihantar ke Google Drive / Google Sheets anda.");
             } catch (error) {
