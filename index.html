@@ -657,7 +657,7 @@
             S(74,"PONDOK ANWARUL MAHABBAH","MPS/KLG/001","PONDOK","LOT 5077, KAMPUNG RAHMAT, SRI LALANG","2","MACHAP","SIMPANG RENGGAM","SWASTA","SWASTA",0,0,0,0,"TIADA","N/A","Beroperasi",0,0,0,"MOHD KAMAL BIN MOHD SAID",0,3,0,0,"30/11/2028","BERDAFTAR PENUH","LULUS 5 TAHUN"),
             S(75,"MADRASAH ISLAMIYAH PALOH","MMJ/KLG/002","MMJ","NO 2 JALAN ABU BAKAR 86600 PALOH","2","PALOH","SEMBRONG","SWASTA","SWASTA",0,0,0,0,"TIADA","N/A","Beroperasi",0,0,0,"",0,0,0,0,"20/06/2026","BERDAFTAR PENUH","LULUS 1 TAHUN"),
             S(76,"MADRASAH NORUL ULUM RENGAM","MMJ/KLG/001","MMJ","NO.17 JALAN DAMAI 86300 RENGAM KLUANG","3","LAYANG-LAYANG","SIMPANG RENGGAM","SWASTA","SWASTA",0,0,0,0,"TIADA","N/A","Beroperasi",0,0,0,"",0,0,0,0,"20/06/2026","BERDAFTAR PENUH","LULUS 1 TAHUN"),
-            S(77,"PEJABAT PENDIDIKAN ISLAM DAERAH (PPID) KLUANG","PPID/KLG/001","PPID","KOMPLEKS PEJABAT KERAJAAN, JALAN DATO CAPTAIN AHMAD, 86000 KLUANG","1","MENGKIBOL","KLUANG","BANDAR","BANGUNAN KERAJAAN",0,1,0,0,"ADA","-","Beroperasi",0,0,0,"",0,0,0,0,"","","")
+            S(77,"PEJABAT PENDIDIKAN ISLAM DAERAH (PPID) KLUANG","PPID/KLG/001","PPID","JALAN HOSPITAL, 86000 KLUANG, JOHOR DARUL TA'ZIM","1","MENGKIBOL","KLUANG","BANDAR","BANGUNAN KERAJAAN",0,1,0,0,"ADA","-","Beroperasi",0,0,0,"",0,0,0,0,"","","")
         ];
 
         const rawTeachers = `
@@ -1105,9 +1105,28 @@
         ADIBAH BINTI ABD RAHMAN|SA SRI MAJU JAYA|DG6|GURU BESAR|
         FAEZAH BINTI SAMAD|SA KAMPUNG MELAYU CHAMEK|DG6|GURU BESAR|
         ANITA BINTI PARMON|SA SRI TENGAH RENGGAM|DG6|GURU BESAR|
+        ZAITUN BINTI HJ OMAR|PEJABAT PENDIDIKAN ISLAM DAERAH (PPID) KLUANG|DG7|PENOLONG PEGAWAI UNIT AKADEMIK|310367-01-5710|zaitunhjomar67@gmail.com
+        AHMAD FAISAL BIN OSMAN|PEJABAT PENDIDIKAN ISLAM DAERAH (PPID) KLUANG|DG6|PENOLONG PEGAWAI UNIT PENGURUSAN|730701-07-5529|ahmadfaisalosman@gmail.com
+        NORIZAM BIN ISMAIL|PEJABAT PENDIDIKAN ISLAM DAERAH (PPID) KLUANG|DG6|PENYELIA SEKSYEN PENGURUSAN SEKOLAH|781103-03-5083|ustaznorizam@yahoo.com
+        FAADZLY BIN ABD KARIM|PEJABAT PENDIDIKAN ISLAM DAERAH (PPID) KLUANG|DG6|PENYELIA SEKSYEN PENDAFTARAN|790701-01-5109|faadzlykarim@gmail.com
+        SITI HAJAR BIN MOHD SAID|PEJABAT PENDIDIKAN ISLAM DAERAH (PPID) KLUANG|DG6|PENYELIA SEKSYEN LATIHAN|780407-01-5192|hajarsaid9444@gmail.com
+        RUZITA BINTI JALIL@SELAMAT|PEJABAT PENDIDIKAN ISLAM DAERAH (PPID) KLUANG|DG5|PENYELIA SEKSYEN HAL EHWAL MURID|710101-01-5444|jruzita71@gmail.com
+        FAEZAH BINTI SAMLAN|PEJABAT PENDIDIKAN ISLAM DAERAH (PPID) KLUANG|DG6|PENYELIA KURIKULUM|720830-01-5996|iezah7278@gmail.com
+        KHAIRUL ARIFIN BIN ABDUL RASHID|PEJABAT PENDIDIKAN ISLAM DAERAH (PPID) KLUANG|DG6|PENYELIA PEPERIKSAAN|750711-01-6707|janggutputih2020@gmail.com
+        MOHD HAZIQ BIN MUHAMMAD SOM|PEJABAT PENDIDIKAN ISLAM DAERAH (PPID) KLUANG|DG5|PENYELIA PEPERIKSAAN|930920-01-6031|haziqsomaihaj@gmail.com
+        NURULJUHAIRA BINTI JUSOH|PEJABAT PENDIDIKAN ISLAM DAERAH (PPID) KLUANG|DG5|PENYELIA TAJ|810503-01-6440|juhairanurul@gmail.com
+        MOHAMMAD YUSUF BIN AHMAD FAZIL|PEJABAT PENDIDIKAN ISLAM DAERAH (PPID) KLUANG|DG6|PENYELIA KO KURIKULUM|811010-01-5863|yusuffazil81@gmail.com
+        ZARINA BINTI A MANAP|PEJABAT PENDIDIKAN ISLAM DAERAH (PPID) KLUANG|S1|PENYELIA KAFA|860101-01-6512|amanapzarina@yahoo.com
+        LUQMAN HAKIM BIN ABU SAMAH|PEJABAT PENDIDIKAN ISLAM DAERAH (PPID) KLUANG|S1|PENYELIA KAFA|810831-01-1499|luqmanhabta@gmail.com
         `;
 
         const initData = () => {
+            // Force clear old cache to load newly hardcoded data (PPID staff) one time
+            if (!localStorage.getItem('ppid_cache_cleared_v1')) {
+                localStorage.removeItem('teacherDataDB');
+                localStorage.setItem('ppid_cache_cleared_v1', 'true');
+            }
+
             let cachedSchools = null;
             let cachedTeachers = null;
             try {
@@ -1136,13 +1155,14 @@
                         s.statusBangunan = template.statusBangunan;
                         s.keluasan = template.keluasan;
                         s.zon = template.zon;
+                        s.alamat = template.alamat; // Paksa kemaskini alamat dari template hardcode
                         sSave = true;
                     }
                 });
                 
                 // PATCH: Inject rekod PPID secara automatik jika ia belum wujud dalam cache lama
                 if (!schools.some(s => s.gred === 'PPID' || s.nama.includes('PEJABAT PENDIDIKAN ISLAM DAERAH'))) {
-                    const ppidRecord = S(77,"PEJABAT PENDIDIKAN ISLAM DAERAH (PPID) KLUANG","PPID/KLG/001","PPID","KOMPLEKS PEJABAT KERAJAAN, JALAN DATO CAPTAIN AHMAD, 86000 KLUANG","1","MENGKIBOL","KLUANG","BANDAR","BANGUNAN KERAJAAN",0,1,0,0,"ADA","-","Beroperasi",0,0,0,"",0,0,0,0,"","","");
+                    const ppidRecord = S(77,"PEJABAT PENDIDIKAN ISLAM DAERAH (PPID) KLUANG","PPID/KLG/001","PPID","JALAN HOSPITAL, 86000 KLUANG, JOHOR DARUL TA'ZIM","1","MENGKIBOL","KLUANG","BANDAR","BANGUNAN KERAJAAN",0,1,0,0,"ADA","-","Beroperasi",0,0,0,"",0,0,0,0,"","","");
                     schools.push(ppidRecord);
                     sSave = true;
                 }
@@ -1150,11 +1170,8 @@
                 if(sSave) localStorage.setItem('schoolDataDB', JSON.stringify(schools));
             }
 
-            const permanentlyRemovedTeachers = [
-                "NORIZAM BIN ISMAIL", "MOHAMMAD YUSUF BIN AHMAD FAZIL", "LUQMAN HAKIM BIN ABU SAMAH",
-                "FAADZLY BIN MOHAMAD KARIM", "ZARINA BINTI A MANAP", "AHMAD FAISAL BIN OSMAN",
-                "MOHD HAZIQ BIN MUHAMMAD SOM", "SITI HAJAR BINTI MOHD SAID", "FAEZAH BINTI SAMLAN"
-            ];
+            // Buang senarai sekatan supaya staf PPID tidak ditapis keluar
+            const permanentlyRemovedTeachers = [];
 
             if (!cachedTeachers || cachedTeachers.length === 0) {
                 let tid = 1;
