@@ -173,6 +173,7 @@
                         <option value="SMAS">Menengah Swasta (SMAS)</option>
                         <option value="PONDOK">Pondok / MMJ</option>
                         <option value="TAJ">Tadika Agama Johor (TAJ)</option>
+                        <option value="PPID">Pejabat Pendidikan Islam Daerah (PPID)</option>
                     </select>
                     <button id="btn-add-school" onclick="openSchoolForm()" class="hidden items-center justify-center gap-2 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white px-4 py-2.5 rounded-xl font-medium text-sm transition-all shadow-md whitespace-nowrap">
                         <i data-lucide="plus" class="w-4 h-4"></i> Tambah Sekolah
@@ -213,19 +214,26 @@
         </div>
     </footer>
 
-    <!-- MODAL AUTH / LOGIN & REGISTER -->
-    <div id="modal-auth" class="fixed inset-0 bg-gradient-to-br from-slate-900 via-sky-900 to-slate-950 z-[100] hidden flex flex-col items-center justify-center p-4 opacity-100 transition-opacity">
+   <!-- MODAL AUTH / LOGIN & REGISTER -->
+    <div id="modal-auth" class="fixed inset-0 bg-gradient-to-br from-slate-900 via-sky-900 to-slate-950 z-[100] hidden flex flex-col items-center justify-center p-4 opacity-100 transition-opacity overflow-y-auto">
         
-        <!-- Logo & Tajuk Paparan Hadapan -->
-        <div class="mb-6 md:mb-8 text-center text-white animate-[modal-enter_0.3s_ease-out]">
-            <div class="w-20 h-20 md:w-24 md:h-24 bg-white rounded-3xl mx-auto flex items-center justify-center p-2 mb-4 shadow-2xl border-4 border-slate-800">
-                <img src="logo ppid kluang.ico" alt="Logo PPID Kluang" class="w-full h-full object-contain" onerror="this.src='https://placehold.co/100x100/0284c7/ffffff?text=PPID'">
+        <!-- Gambar Banner Tambahan Di Atas Muka Depan -->
+        <div class="w-full max-w-[220px] md:max-w-[260px] mt-8 mb-2 animate-[modal-enter_0.3s_ease-out] shrink-0 mx-auto">
+            <div class="bg-white/95 rounded-2xl shadow-xl p-3 border-2 border-sky-200/40 flex justify-center items-center">
+                <img src="https://i.ibb.co/fGr8swdd/ppid-removebg-preview.png" alt="Banner Utama PPID" class="w-full h-auto max-h-[70px] md:max-h-[85px] object-contain">
             </div>
-            <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight uppercase drop-shadow-md">PPID KLUANG</h1>
-            <p class="text-sky-300 text-xs md:text-sm font-bold mt-1.5 tracking-widest uppercase">Sistem Maklumat Bersepadu</p>
         </div>
 
-        <div class="bg-white rounded-2xl w-full max-w-md shadow-2xl overflow-hidden transform transition-all animate-[modal-enter_0.4s_ease-out]">
+        <!-- Logo & Tajuk Paparan Hadapan -->
+        <div class="mb-6 md:mb-8 text-center text-white animate-[modal-enter_0.3s_ease-out] shrink-0 mt-4">
+            <div class="w-16 h-16 md:w-20 md:h-20 bg-white rounded-2xl mx-auto flex items-center justify-center p-2 mb-3 shadow-2xl border-2 border-slate-800">
+                <i data-lucide="database" class="w-10 h-10 md:w-12 md:h-12 text-sky-600"></i>
+            </div>
+            <h1 class="text-xl md:text-2xl font-extrabold tracking-tight uppercase drop-shadow-md">PPID KLUANG</h1>
+            <p class="text-sky-300 text-[10px] md:text-xs font-bold mt-1 tracking-widest uppercase">Sistem Maklumat Bersepadu</p>
+        </div>
+
+        <div class="bg-white rounded-2xl w-full max-w-md shadow-2xl overflow-hidden transform transition-all animate-[modal-enter_0.4s_ease-out] shrink-0 mb-8">
             <div class="bg-gradient-to-r from-sky-700 to-sky-900 text-white px-6 py-4 flex items-center justify-between">
                 <h2 id="auth-modal-title" class="text-lg font-bold flex items-center gap-2"><i data-lucide="lock" class="w-5 h-5"></i> Log Masuk Sistem</h2>
             </div>
@@ -293,14 +301,6 @@
                         <label class="block text-xs font-bold text-slate-600 mb-1.5 uppercase tracking-wide">Alamat E-mel (Rasmi)</label>
                         <input type="email" id="t-email" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-slate-900 lowercase focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all bg-white shadow-sm" placeholder="guru@moe-dl.edu.my" />
                     </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-600 mb-1.5 uppercase tracking-wide">No. Telefon</label>
-                        <input type="text" id="t-telefon" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all bg-white shadow-sm font-mono" placeholder="Contoh: 012-3456789" />
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-600 mb-1.5 uppercase tracking-wide">Tarikh Lahir</label>
-                        <input type="date" id="t-tarikhLahir" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all bg-white shadow-sm" />
-                    </div>
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
@@ -361,6 +361,7 @@
                                 <option value="TAHFIZ">MAAHAD TAHFIZ</option><option value="SRAS">SEK. REN. SWASTA (SRAS)</option>
                                 <option value="SMAS">SEK. MEN. SWASTA (SMAS)</option><option value="PONDOK">PONDOK</option>
                                 <option value="MMJ">MADRASAH (MMJ)</option><option value="TAJ">TADIKA AGAMA (TAJ)</option>
+                                <option value="PPID">PEJABAT PENDIDIKAN ISLAM DAERAH (PPID)</option>
                             </select>
                         </div>
                         <div>
@@ -528,20 +529,6 @@
         let currentSortMode = 'kategori_az';
 
         // Helpers
-        const calculateAge = (ic, tarikhLahir) => {
-            const currentYear = 2026;
-            if (tarikhLahir && tarikhLahir !== '-') {
-                const year = new Date(tarikhLahir).getFullYear();
-                if (!isNaN(year)) return currentYear - year;
-            }
-            if (ic && ic.length >= 6 && /^\d+$/.test(ic.substring(0,6))) {
-                let yy = parseInt(ic.substring(0,2));
-                let birthYear = yy > 26 ? 1900 + yy : 2000 + yy;
-                return currentYear - birthYear;
-            }
-            return '-';
-        };
-
         const normalizeSchoolName = (name) => {
             if (!name) return "";
             return name.toUpperCase().replace(/^(SA|S A|SRAB)\s+/g, '').replace(/\bKLG\b/g, 'KLUANG').replace(/\bBT\b/g, 'BATU').replace(/\bKG\b/g, 'KAMPUNG').replace(/\bAYER\b/g, 'AIR').replace(/\b1\b/g, '01').replace(/\b2\b/g, '02').replace(/\bHJ\b/g, 'HAJI').replace(/\bRENGAM\b/g, 'RENGGAM').replace(/[^A-Z0-9]/g, ''); 
@@ -553,6 +540,7 @@
             if (s.gred === 'TAHFIZ') return 'TAHFIZ';
             if (['PONDOK', 'MMJ'].includes(s.gred)) return 'PONDOK';
             if (['SRAS', 'SMAS'].includes(s.gred)) return 'SWASTA';
+            if (s.gred === 'PPID') return 'PPID';
             return 'LAIN';
         };
 
@@ -563,6 +551,7 @@
                 case 'TAHFIZ': return 'Maahad Tahfiz';
                 case 'PONDOK': return 'Madrasah / Pondok';
                 case 'SWASTA': return 'Sekolah Swasta (SRAS/SMAS)';
+                case 'PPID': return 'Pejabat Pendidikan Islam Daerah (PPID)';
                 default: return 'Lain-lain';
             }
         };
@@ -575,6 +564,7 @@
             if (gred === 'SRAS' || gred === 'SMAS') return 'bg-pink-100 text-pink-700';
             if (gred === 'PONDOK' || gred === 'MMJ') return 'bg-indigo-100 text-indigo-700';
             if (gred === 'TAJ') return 'bg-cyan-100 text-cyan-700';
+            if (gred === 'PPID') return 'bg-slate-800 text-white';
             return 'bg-slate-100 text-slate-700';
         };
 
@@ -666,7 +656,8 @@
             S(73,"MADRASAH AD DIRASAT AL ISLAMIYAH","MPS/KLG/001","PONDOK","LOT 635, KAMPUNG BARU JALAN PALOH","2","PALOH","SEMBRONG","SWASTA","SWASTA",0,0,0,0,"TIADA","N/A","Beroperasi",0,0,0,"ANDI ARROZY PAIMAN AL-HAFIDZ",10,2,0,0,"30/06/2028","BERDAFTAR PENUH","LULUS 5 TAHUN"),
             S(74,"PONDOK ANWARUL MAHABBAH","MPS/KLG/001","PONDOK","LOT 5077, KAMPUNG RAHMAT, SRI LALANG","2","MACHAP","SIMPANG RENGGAM","SWASTA","SWASTA",0,0,0,0,"TIADA","N/A","Beroperasi",0,0,0,"MOHD KAMAL BIN MOHD SAID",0,3,0,0,"30/11/2028","BERDAFTAR PENUH","LULUS 5 TAHUN"),
             S(75,"MADRASAH ISLAMIYAH PALOH","MMJ/KLG/002","MMJ","NO 2 JALAN ABU BAKAR 86600 PALOH","2","PALOH","SEMBRONG","SWASTA","SWASTA",0,0,0,0,"TIADA","N/A","Beroperasi",0,0,0,"",0,0,0,0,"20/06/2026","BERDAFTAR PENUH","LULUS 1 TAHUN"),
-            S(76,"MADRASAH NORUL ULUM RENGAM","MMJ/KLG/001","MMJ","NO.17 JALAN DAMAI 86300 RENGAM KLUANG","3","LAYANG-LAYANG","SIMPANG RENGGAM","SWASTA","SWASTA",0,0,0,0,"TIADA","N/A","Beroperasi",0,0,0,"",0,0,0,0,"20/06/2026","BERDAFTAR PENUH","LULUS 1 TAHUN")
+            S(76,"MADRASAH NORUL ULUM RENGAM","MMJ/KLG/001","MMJ","NO.17 JALAN DAMAI 86300 RENGAM KLUANG","3","LAYANG-LAYANG","SIMPANG RENGGAM","SWASTA","SWASTA",0,0,0,0,"TIADA","N/A","Beroperasi",0,0,0,"",0,0,0,0,"20/06/2026","BERDAFTAR PENUH","LULUS 1 TAHUN"),
+            S(77,"PEJABAT PENDIDIKAN ISLAM DAERAH (PPID) KLUANG","PPID/KLG/001","PPID","JALAN HOSPITAL, 86000 KLUANG, JOHOR DARUL TA'ZIM","1","MENGKIBOL","KLUANG","BANDAR","BANGUNAN KERAJAAN",0,1,0,0,"ADA","-","Beroperasi",0,0,0,"",0,0,0,0,"","","")
         ];
 
         const rawTeachers = `
@@ -1114,9 +1105,28 @@
         ADIBAH BINTI ABD RAHMAN|SA SRI MAJU JAYA|DG6|GURU BESAR|
         FAEZAH BINTI SAMAD|SA KAMPUNG MELAYU CHAMEK|DG6|GURU BESAR|
         ANITA BINTI PARMON|SA SRI TENGAH RENGGAM|DG6|GURU BESAR|
+        ZAITUN BINTI HJ OMAR|PEJABAT PENDIDIKAN ISLAM DAERAH (PPID) KLUANG|DG7|PENOLONG PEGAWAI UNIT AKADEMIK|310367-01-5710|zaitunhjomar67@gmail.com
+        AHMAD FAISAL BIN OSMAN|PEJABAT PENDIDIKAN ISLAM DAERAH (PPID) KLUANG|DG6|PENOLONG PEGAWAI UNIT PENGURUSAN|730701-07-5529|ahmadfaisalosman@gmail.com
+        NORIZAM BIN ISMAIL|PEJABAT PENDIDIKAN ISLAM DAERAH (PPID) KLUANG|DG6|PENYELIA SEKSYEN PENGURUSAN SEKOLAH|781103-03-5083|ustaznorizam@yahoo.com
+        FAADZLY BIN ABD KARIM|PEJABAT PENDIDIKAN ISLAM DAERAH (PPID) KLUANG|DG6|PENYELIA SEKSYEN PENDAFTARAN|790701-01-5109|faadzlykarim@gmail.com
+        SITI HAJAR BIN MOHD SAID|PEJABAT PENDIDIKAN ISLAM DAERAH (PPID) KLUANG|DG6|PENYELIA SEKSYEN LATIHAN|780407-01-5192|hajarsaid9444@gmail.com
+        RUZITA BINTI JALIL@SELAMAT|PEJABAT PENDIDIKAN ISLAM DAERAH (PPID) KLUANG|DG5|PENYELIA SEKSYEN HAL EHWAL MURID|710101-01-5444|jruzita71@gmail.com
+        FAEZAH BINTI SAMLAN|PEJABAT PENDIDIKAN ISLAM DAERAH (PPID) KLUANG|DG6|PENYELIA KURIKULUM|720830-01-5996|iezah7278@gmail.com
+        KHAIRUL ARIFIN BIN ABDUL RASHID|PEJABAT PENDIDIKAN ISLAM DAERAH (PPID) KLUANG|DG6|PENYELIA PEPERIKSAAN|750711-01-6707|janggutputih2020@gmail.com
+        MOHD HAZIQ BIN MUHAMMAD SOM|PEJABAT PENDIDIKAN ISLAM DAERAH (PPID) KLUANG|DG5|PENYELIA PEPERIKSAAN|930920-01-6031|haziqsomaihaj@gmail.com
+        NURULJUHAIRA BINTI JUSOH|PEJABAT PENDIDIKAN ISLAM DAERAH (PPID) KLUANG|DG5|PENYELIA TAJ|810503-01-6440|juhairanurul@gmail.com
+        MOHAMMAD YUSUF BIN AHMAD FAZIL|PEJABAT PENDIDIKAN ISLAM DAERAH (PPID) KLUANG|DG6|PENYELIA KO KURIKULUM|811010-01-5863|yusuffazil81@gmail.com
+        ZARINA BINTI A MANAP|PEJABAT PENDIDIKAN ISLAM DAERAH (PPID) KLUANG|S1|PENYELIA KAFA|860101-01-6512|amanapzarina@yahoo.com
+        LUQMAN HAKIM BIN ABU SAMAH|PEJABAT PENDIDIKAN ISLAM DAERAH (PPID) KLUANG|S1|PENYELIA KAFA|810831-01-1499|luqmanhabta@gmail.com
         `;
 
         const initData = () => {
+            // Force clear old cache to load newly hardcoded data (PPID staff) one time
+            if (!localStorage.getItem('ppid_cache_cleared_v1')) {
+                localStorage.removeItem('teacherDataDB');
+                localStorage.setItem('ppid_cache_cleared_v1', 'true');
+            }
+
             let cachedSchools = null;
             let cachedTeachers = null;
             try {
@@ -1145,50 +1155,44 @@
                         s.statusBangunan = template.statusBangunan;
                         s.keluasan = template.keluasan;
                         s.zon = template.zon;
+                        s.alamat = template.alamat; // Paksa kemaskini alamat dari template hardcode
                         sSave = true;
                     }
                 });
+                
+                // PATCH: Inject rekod PPID secara automatik jika ia belum wujud dalam cache lama
+                if (!schools.some(s => s.gred === 'PPID' || s.nama.includes('PEJABAT PENDIDIKAN ISLAM DAERAH'))) {
+                    const ppidRecord = S(77,"PEJABAT PENDIDIKAN ISLAM DAERAH (PPID) KLUANG","PPID/KLG/001","PPID","JALAN HOSPITAL, 86000 KLUANG, JOHOR DARUL TA'ZIM","1","MENGKIBOL","KLUANG","BANDAR","BANGUNAN KERAJAAN",0,1,0,0,"ADA","-","Beroperasi",0,0,0,"",0,0,0,0,"","","");
+                    schools.push(ppidRecord);
+                    sSave = true;
+                }
+
                 if(sSave) localStorage.setItem('schoolDataDB', JSON.stringify(schools));
             }
 
-            const permanentlyRemovedTeachers = [
-                "NORIZAM BIN ISMAIL", "MOHAMMAD YUSUF BIN AHMAD FAZIL", "LUQMAN HAKIM BIN ABU SAMAH",
-                "FAADZLY BIN MOHAMAD KARIM", "ZARINA BINTI A MANAP", "AHMAD FAISAL BIN OSMAN",
-                "MOHD HAZIQ BIN MUHAMMAD SOM", "SITI HAJAR BINTI MOHD SAID", "FAEZAH BINTI SAMLAN"
-            ];
+            // Buang senarai sekatan supaya staf PPID tidak ditapis keluar
+            const permanentlyRemovedTeachers = [];
 
             if (!cachedTeachers || cachedTeachers.length === 0) {
                 let tid = 1;
                 teachers = rawTeachers.split('\n').map(l => l.trim()).filter(Boolean).map(line => {
                     let p = line.split('|');
-                    let t_ic = p[4] ? p[4].trim() : "-";
-                    let t_email = p[5] ? p[5].trim() : "-";
-                    let t_tel = p[6] ? p[6].trim() : "-";
-                    let t_dob = p[7] ? p[7].trim() : "-";
                     return { 
                         id: tid++, 
                         nama: p[0] ? p[0].trim() : "", 
                         sekolah: p[1] ? p[1].trim() : "", 
                         gred: p[2] ? p[2].trim() : "", 
                         jawatan: p[3] ? p[3].trim() : "", 
-                        ic: t_ic, 
-                        email: t_email, 
-                        telefon: t_tel,
-                        tarikhLahir: t_dob,
-                        umur: calculateAge(t_ic, t_dob),
+                        ic: p[4] ? p[4].trim() : "-", 
+                        email: p[5] ? p[5].trim() : "-", 
                         status: 'Aktif' 
                     };
                 }).filter(t => !permanentlyRemovedTeachers.includes(t.nama));
             } else {
                 teachers = cachedTeachers;
-                // PATCH: Pastikan data guru dari cache lama dikemaskini dengan ID dan parameter baru
+                // PATCH: Pastikan data guru dari cache lama dikemaskini dengan ID
                 let tSave = false;
-                teachers.forEach((t, i) => { 
-                    if(!t.id) { t.id = Date.now() + 1000 + i; tSave = true; } 
-                    if(t.telefon === undefined) { t.telefon = '-'; tSave = true; }
-                    if(t.tarikhLahir === undefined) { t.tarikhLahir = '-'; tSave = true; }
-                    if(t.umur === undefined) { t.umur = calculateAge(t.ic, t.tarikhLahir); tSave = true; }
-                });
+                teachers.forEach((t, i) => { if(!t.id) { t.id = Date.now() + 1000 + i; tSave = true; } });
                 if(tSave) localStorage.setItem('teacherDataDB', JSON.stringify(teachers));
             }
         };
@@ -1203,6 +1207,8 @@
         };
 
         const reportColumnsAvailable = {
+            ppid: { label: "Daerah PPID", get: s => "KLUANG" },
+            namaPPID: { label: "Nama PPID", get: s => "PPID KLUANG" },
             kategori: { label: "Kategori Institusi", get: s => getCategoryLabel(getSchoolCategory(s)) },
             noDaftar: { label: "Pendaftaran", get: s => s.noDaftar },
             pengetua: { label: "Pengetua/GB", get: s => s.pengetua || "-" },
@@ -1241,6 +1247,12 @@
             bilanganGuruTAJ: { label: "Bilangan Guru TAJ", get: s => {
                 return getTeachersForSchool(s.nama).filter(t => t.status === 'Aktif' && t.gred === 'TAJ').length;
             }},
+            senaraiKakitanganPPID: { label: "Senarai Kakitangan PPID", get: s => {
+                if (s.gred !== 'PPID' && !s.nama.includes('PPID')) return '-';
+                const staffList = getTeachersForSchool(s.nama).filter(t=>t.status==='Aktif');
+                if (staffList.length === 0) return '<span class="text-slate-400 italic">Tiada Rekod</span>';
+                return `<ol class="list-decimal list-inside space-y-1">` + staffList.map(t => `<li class="pl-1">${t.nama} <span class="text-sky-600 font-semibold">(${t.jawatan})</span></li>`).join('') + `</ol>`;
+            }},
             senaraiGuru: { label: "Senarai Guru", get: s => {
                 const guruList = getTeachersForSchool(s.nama).filter(t=>t.status==='Aktif');
                 if (guruList.length === 0) return '-';
@@ -1274,7 +1286,13 @@
             let filtered = schools.filter(s => !deletedSchoolsBlacklist.includes(s.id));
             if (searchQuery) {
                 const q = searchQuery.toLowerCase();
-                filtered = filtered.filter(s => s.nama.toLowerCase().includes(q) || s.noDaftar.toLowerCase().includes(q) || s.lokasi.toLowerCase().includes(q));
+                filtered = filtered.filter(s => 
+                    s.nama.toLowerCase().includes(q) || 
+                    (s.noDaftar && s.noDaftar.toLowerCase().includes(q)) || 
+                    (s.lokasi && s.lokasi.toLowerCase().includes(q)) ||
+                    (s.gred && s.gred.toLowerCase().includes(q)) ||
+                    getSchoolCategory(s).toLowerCase().includes(q)
+                );
             }
             if (filterZon !== 'Semua') {
                 filtered = filtered.filter(s => String(s.zon) === filterZon);
@@ -1432,28 +1450,19 @@
                 thead.innerHTML = `<tr>
                     <th class="px-4 py-3 rounded-tl-xl w-10 text-center">No</th>
                     <th class="px-4 py-3">Nama Guru</th>
-                    <th class="px-4 py-3">No. Telefon</th>
-                    <th class="px-4 py-3">E-mel</th>
-                    <th class="px-4 py-3 text-center">Umur / Lahir</th>
                     <th class="px-4 py-3">Sekolah</th>
                     <th class="px-4 py-3">Jawatan</th>
                     <th class="px-4 py-3">Status</th>
                     <th class="px-4 py-3 rounded-tr-xl text-center admin-only ${isAdmin ? '' : 'hidden'}">Tindakan</th>
                 </tr>`;
                 
-                if(data.length === 0) tbody.innerHTML = `<tr><td colspan="9" class="px-4 py-8 text-center text-slate-500">Tiada rekod.</td></tr>`;
+                if(data.length === 0) tbody.innerHTML = `<tr><td colspan="6" class="px-4 py-8 text-center text-slate-500">Tiada rekod.</td></tr>`;
                 else {
                     tbody.innerHTML = data.map((t, i) => `
                         <tr class="hover:bg-slate-50 transition-colors">
                             <td class="px-4 py-3 text-center text-slate-400">${i+1}</td>
                             <td class="px-4 py-3 font-bold text-slate-700">${t.nama}
                                 <div class="text-[10px] text-slate-400 font-mono mt-0.5">${t.ic}</div>
-                            </td>
-                            <td class="px-4 py-3 text-slate-600 font-mono font-medium">${t.telefon || '-'}</td>
-                            <td class="px-4 py-3 text-slate-500 text-xs">${t.email || '-'}</td>
-                            <td class="px-4 py-3 text-center">
-                                <div class="font-bold text-slate-700">${t.umur !== '-' ? t.umur + ' thn' : '-'}</div>
-                                <div class="text-[10px] text-slate-400 font-mono">${t.tarikhLahir !== '-' ? t.tarikhLahir : '-'}</div>
                             </td>
                             <td class="px-4 py-3 text-slate-600 font-medium text-xs">${t.sekolah}</td>
                             <td class="px-4 py-3 text-slate-600 text-xs">${t.gred} - ${t.jawatan}</td>
@@ -1496,6 +1505,13 @@
         const closeAllCustomSelects = () => {
             document.querySelectorAll('.custom-select-container').forEach(c => c.classList.remove('open'));
         };
+
+        // Menutup dropdown secara automatik apabila klik di luar kotak dropdown
+        document.addEventListener('click', (event) => {
+            if (!event.target.closest('.custom-select-container')) {
+                closeAllCustomSelects();
+            }
+        });
 
         const updateCustomSelectText = (selectId, labelId, prefixText) => {
             const container = document.getElementById(selectId);
@@ -1595,7 +1611,7 @@
             if (!container.innerHTML.trim()) {
                 
                 // 1. Kategori Institusi
-                let catListItems = ['SAKNJ', 'TAJ', 'TAHFIZ', 'PONDOK', 'SWASTA'].map(c => `
+                let catListItems = ['SAKNJ', 'TAJ', 'TAHFIZ', 'PONDOK', 'SWASTA', 'PPID'].map(c => `
                     <label class="flex items-center gap-2.5 text-sm cursor-pointer hover:bg-slate-50 p-2 rounded-lg transition-colors">
                         <input type="checkbox" value="${c}" data-label="${getCategoryLabel(c)}" class="cat-check accent-sky-600 w-4 h-4 rounded border-slate-300" onchange="handleItemChange('dd-kategori', 'lbl-kategori', 'Kategori', 'all-cat')"> 
                         <span class="font-medium text-slate-700">${getCategoryLabel(c)}</span>
@@ -1698,7 +1714,7 @@
                             </div>
                         </div>
                         
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 bg-slate-50 p-4 rounded-xl border border-slate-100 items-end z-30 relative">
+                        <div id="laporan-filter-dropdowns" class="grid grid-cols-1 md:grid-cols-3 gap-5 bg-slate-50 p-4 rounded-xl border border-slate-100 items-end z-30 relative">
                             <div class="space-y-1.5 w-full">
                                 <label class="font-bold text-xs uppercase text-slate-500 tracking-wider">Kategori Institusi</label>
                                 ${customSelectKategori}
@@ -1856,7 +1872,7 @@
                         let align = typeof val === 'number' ? 'text-center font-mono font-medium' : 'text-left';
                         if(typeof val === 'number') totals[k] += val;
                         // specific wrap for senarai guru, senarai emel & senarai ic
-                        if (k === 'senaraiGuru' || k === 'senaraiEmel' || k === 'senaraiIC' || k === 'senaraiJawatan') align += ' whitespace-normal min-w-[300px] text-[10px] leading-relaxed';
+                        if (k === 'senaraiGuru' || k === 'senaraiEmel' || k === 'senaraiIC' || k === 'senaraiJawatan' || k === 'senaraiKakitanganPPID') align += ' whitespace-normal min-w-[300px] text-[10px] leading-relaxed';
                         
                         tbody += `<td class="px-4 py-2 ${align} text-xs border-r border-slate-100 print-wrap">${val}</td>`;
                     });
@@ -2307,8 +2323,6 @@
             document.getElementById('t-nama').value = '';
             document.getElementById('t-ic').value = '';
             document.getElementById('t-email').value = '';
-            document.getElementById('t-telefon').value = '';
-            document.getElementById('t-tarikhLahir').value = '';
             document.getElementById('t-gred').value = '';
             document.getElementById('t-jawatan').value = '';
             document.getElementById('t-status').value = 'Aktif';
@@ -2329,8 +2343,6 @@
                     document.getElementById('t-nama').value = t.nama || '';
                     document.getElementById('t-ic').value = t.ic || '';
                     document.getElementById('t-email').value = t.email || '';
-                    document.getElementById('t-telefon').value = t.telefon && t.telefon !== '-' ? t.telefon : '';
-                    document.getElementById('t-tarikhLahir').value = t.tarikhLahir && t.tarikhLahir !== '-' ? t.tarikhLahir : '';
                     document.getElementById('t-gred').value = t.gred || '';
                     document.getElementById('t-jawatan').value = t.jawatan || '';
                     
@@ -2358,20 +2370,14 @@
         const saveTeacher = (e) => {
             e.preventDefault();
             const id = document.getElementById('t-id').value;
-            const ic = document.getElementById('t-ic').value;
-            const dob = document.getElementById('t-tarikhLahir').value || '-';
-            
             const newT = {
                 id: id ? parseInt(id) : Date.now(),
                 nama: document.getElementById('t-nama').value.toUpperCase(),
                 sekolah: document.getElementById('t-sekolah').value,
                 gred: document.getElementById('t-gred').value.toUpperCase(),
                 jawatan: document.getElementById('t-jawatan').value.toUpperCase(),
-                ic: ic,
+                ic: document.getElementById('t-ic').value,
                 email: document.getElementById('t-email').value.toLowerCase(),
-                telefon: document.getElementById('t-telefon').value || '-',
-                tarikhLahir: dob,
-                umur: calculateAge(ic, dob),
                 status: document.getElementById('t-status').value
             };
 
@@ -2535,6 +2541,12 @@
                     body: JSON.stringify(payload)
                 });
 
+                // Sembunyikan kotak pilihan zon/kategori/kolum selepas berjaya simpan
+                const filterBox = document.getElementById('laporan-filter-dropdowns');
+                if (filterBox) {
+                    filterBox.style.display = 'none';
+                }
+
                 showMessage("Berjaya Disegerak!", "Data pangkalan data sekolah dan guru PPID Kluang telah berjaya dihantar ke Google Drive / Google Sheets anda.");
             } catch (error) {
                 console.error("Google Drive Sync Error:", error);
@@ -2631,9 +2643,6 @@
                                 }
                             } else if (isTeachers) {
                                 if (header === 'id' && val !== "" && !isNaN(val)) {
-                                    val = Number(val);
-                                }
-                                if (header === 'umur' && val !== "" && !isNaN(val)) {
                                     val = Number(val);
                                 }
                             }
