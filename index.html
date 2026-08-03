@@ -93,8 +93,8 @@
                         <img src="logo ppid kluang.ico" alt="Logo PPID Kluang" class="w-full h-full object-contain" onerror="this.src='https://placehold.co/100x100/0284c7/ffffff?text=PPID'">
                     </div>
                     <div class="block">
-                        <h1 class="font-extrabold text-white text-sm md:text-base leading-tight tracking-tight whitespace-nowrap" data-i18n="PPID KLUANG">PPID KLUANG</h1>
-                        <p class="text-[10px] md:text-xs text-sky-200 uppercase font-semibold mt-0.5 whitespace-nowrap tracking-wide" data-i18n="Sistem Maklumat Bersepadu">Sistem Maklumat Bersepadu</p>
+                        <h1 class="font-extrabold text-white text-sm md:text-base leading-tight tracking-tight whitespace-nowrap lang-text" data-ms="PPID KLUANG" data-ar="PPID كلوانج">PPID KLUANG</h1>
+                        <p class="text-[10px] md:text-xs text-sky-200 uppercase font-semibold mt-0.5 whitespace-nowrap tracking-wide lang-text" data-ms="SISTEM MAKLUMAT" data-ar="نظام المعلومات">SISTEM MAKLUMAT</p>
                     </div>
                 </div>
             </div>
@@ -102,31 +102,31 @@
             <div id="main-nav-menu" class="hidden flex-row items-center w-full lg:w-auto gap-2 overflow-x-auto pb-2 lg:pb-0 scrollbar-hide">
                 <button id="nav-profail" onclick="switchTab('profail')" class="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl transition-all text-sky-100 hover:bg-sky-800 hover:text-white font-medium group relative shrink-0">
                     <i data-lucide="layout-grid" class="w-5 h-5 shrink-0 transition-transform group-hover:scale-110"></i>
-                    <span class="block text-sm font-bold whitespace-nowrap" data-i18n="PROFIL SEKOLAH">PROFIL SEKOLAH</span>
+                    <span class="block text-sm font-bold whitespace-nowrap lang-text" data-ms="PROFIL SEKOLAH" data-ar="ملف المدرسة">PROFIL SEKOLAH</span>
                 </button>
                 <button id="nav-sekolah" onclick="switchTab('sekolah')" class="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl transition-all text-sky-100 hover:bg-sky-800 hover:text-white font-medium group relative shrink-0">
                     <i data-lucide="building-2" class="w-5 h-5 shrink-0 transition-transform group-hover:scale-110"></i>
-                    <span class="block text-sm font-bold whitespace-nowrap" data-i18n="SENARAI SEKOLAH">SENARAI SEKOLAH</span>
+                    <span class="block text-sm font-bold whitespace-nowrap lang-text" data-ms="SENARAI SEKOLAH" data-ar="قائمة المدارس">SENARAI SEKOLAH</span>
                 </button>
                 <button id="nav-guru" onclick="switchTab('guru')" class="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl transition-all text-sky-100 hover:bg-sky-800 hover:text-white font-medium group relative shrink-0">
                     <i data-lucide="users" class="w-5 h-5 shrink-0 transition-transform group-hover:scale-110"></i>
-                    <span class="block text-sm font-bold whitespace-nowrap" data-i18n="SENARAI GURU">SENARAI GURU</span>
+                    <span class="block text-sm font-bold whitespace-nowrap lang-text" data-ms="SENARAI GURU" data-ar="قائمة المعلمين">SENARAI GURU</span>
                 </button>
                 <button id="nav-laporan" onclick="switchTab('laporan')" class="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl transition-all text-sky-100 hover:bg-sky-800 hover:text-white font-medium group relative shrink-0">
                     <i data-lucide="pie-chart" class="w-5 h-5 shrink-0 transition-transform group-hover:scale-110"></i>
-                    <span class="block text-sm font-bold whitespace-nowrap" data-i18n="LAPORAN & ANALISIS">LAPORAN & ANALISIS</span>
+                    <span class="block text-sm font-bold whitespace-nowrap lang-text" data-ms="LAPORAN & ANALISIS" data-ar="التقارير والتحليلات">LAPORAN & ANALISIS</span>
                 </button>
                 
                 <div class="hidden lg:block w-px h-6 bg-sky-700 mx-2"></div>
                 
                 <button id="btn-admin-toggle" onclick="toggleAdmin()" class="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-medium text-sm transition-all bg-sky-950 text-sky-100 hover:bg-sky-900 border border-sky-700 group relative shrink-0" title="Akses Sistem & Pengurusan">
                     <i data-lucide="shield" class="w-5 h-5 shrink-0"></i>
-                    <span id="nav-auth-text" class="block text-sm font-bold whitespace-nowrap" data-i18n="AKSES ADMIN">AKSES ADMIN</span>
+                    <span id="nav-auth-text" class="block text-sm font-bold whitespace-nowrap">AKSES ADMIN</span>
                 </button>
-                
-                <button id="btn-lang-toggle" onclick="toggleLanguage()" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl transition-all text-emerald-300 hover:bg-emerald-800 hover:text-white font-bold text-sm border border-emerald-700/50 group shrink-0 ml-1" title="Tukar Bahasa / Change Language">
-                    <i data-lucide="globe" class="w-4 h-4 shrink-0 transition-transform group-hover:scale-110"></i>
-                    <span id="lang-text">عربي (AR)</span>
+
+                <button id="btn-lang-toggle" onclick="toggleLanguage()" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl font-bold text-sm transition-all bg-teal-700 text-teal-50 hover:bg-teal-600 border border-teal-600 group relative shrink-0 ml-1">
+                    <i data-lucide="globe" class="w-4 h-4 shrink-0"></i>
+                    <span id="lang-text-display">عربي</span>
                 </button>
             </div>
         </nav>
@@ -139,19 +139,19 @@
                     <i data-lucide="mosque" class="w-64 h-64"></i>
                 </div>
                 <div class="relative z-10">
-                    <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800 tracking-tight uppercase" data-i18n="PENGURUSAN SISTEM MAKLUMAT PPID KLUANG">PENGURUSAN SISTEM MAKLUMAT PPID KLUANG</h2>
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800 tracking-tight uppercase">PENGURUSAN SISTEM MAKLUMAT PPID KLUANG</h2>
                     <p class="text-sm md:text-base text-slate-500 mt-1.5 font-medium flex items-center gap-2">
-                        <i data-lucide="database" class="w-4 h-4"></i> <span data-i18n="Pangkalan Data Bersepadu Pelajar & Guru">Pangkalan Data Bersepadu Pelajar & Guru</span>
+                        <i data-lucide="database" class="w-4 h-4"></i> Pangkalan Data Bersepadu Pelajar & Guru
                     </p>
                 </div>
                 <div class="flex items-center gap-3 w-full sm:w-auto relative z-10">
                     <div class="flex-1 bg-teal-50/80 backdrop-blur px-5 py-3 rounded-xl border border-teal-100 text-center shadow-sm">
                         <div id="stat-total-schools" class="text-2xl font-bold text-teal-700">0</div>
-                        <div class="text-[10px] text-teal-600 font-bold uppercase tracking-wider mt-0.5" data-i18n="Sekolah Aktif">Sekolah Aktif</div>
+                        <div class="text-[10px] text-teal-600 font-bold uppercase tracking-wider mt-0.5">Sekolah Aktif</div>
                     </div>
                     <div class="flex-1 bg-blue-50/80 backdrop-blur px-5 py-3 rounded-xl border border-blue-100 text-center shadow-sm">
                         <div id="stat-total-teachers" class="text-2xl font-bold text-blue-700">0</div>
-                        <div class="text-[10px] text-blue-600 font-bold uppercase tracking-wider mt-0.5" data-i18n="Guru Aktif">Guru Aktif</div>
+                        <div class="text-[10px] text-blue-600 font-bold uppercase tracking-wider mt-0.5">Guru Aktif</div>
                     </div>
                 </div>
             </header>
@@ -159,27 +159,32 @@
             <section id="search-filter-section" class="bg-white rounded-2xl shadow-sm p-4 border border-slate-100 flex flex-col md:flex-row gap-4 transition-all z-20 relative">
                 <div class="flex-1 relative">
                     <i data-lucide="search" class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5"></i>
-                    <input type="text" id="search-input" oninput="handleFilterChange()" data-i18n="Cari rekod nama, pendaftaran, ic..." placeholder="Cari rekod nama, pendaftaran, ic..." class="w-full pl-11 pr-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 bg-slate-50 transition-all text-sm" />
+                    <input type="text" id="search-input" oninput="handleFilterChange()" placeholder="Cari rekod nama, pendaftaran, ic..." class="w-full pl-11 pr-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 bg-slate-50 transition-all text-sm" />
                 </div>
                 <div class="flex flex-wrap md:flex-nowrap gap-3">
                     <select id="filter-zon" onchange="handleFilterChange()" class="flex-1 md:flex-none px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium">
-                        <option value="Semua" data-i18n="Semua Zon">Semua Zon</option>
-                        <option value="1" data-i18n="Zon 1">Zon 1</option>
-                        <option value="2" data-i18n="Zon 2">Zon 2</option>
-                        <option value="3" data-i18n="Zon 3">Zon 3</option>
+                        <option value="Semua">Semua Zon</option>
+                        <option value="1">Zon 1</option>
+                        <option value="2">Zon 2</option>
+                        <option value="3">Zon 3</option>
                     </select>
                     <select id="filter-gred" onchange="handleFilterChange()" class="flex-1 md:flex-none px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium">
-                        <option value="Semua" data-i18n="Semua Kategori/Gred">Semua Kategori/Gred</option>
+                        <option value="Semua">Semua Kategori/Gred</option>
+                        <option value="A">SAKNJ Gred A</option>
+                        <option value="B">SAKNJ Gred B</option>
+                        <option value="C">SAKNJ Gred C</option>
+                        <option value="TAHFIZ">Tahfiz</option>
+                        <option value="SRAS">Rendah Swasta (SRAS)</option>
                         <option value="SMAS">Menengah Swasta (SMAS)</option>
                         <option value="PONDOK">Pondok / MMJ</option>
                         <option value="TAJ">Tadika Agama Johor (TAJ)</option>
                         <option value="PPID">Pejabat Pendidikan Islam Daerah (PPID)</option>
                     </select>
                     <button id="btn-add-school" onclick="openSchoolForm()" class="hidden items-center justify-center gap-2 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white px-4 py-2.5 rounded-xl font-medium text-sm transition-all shadow-md whitespace-nowrap">
-                        <i data-lucide="plus" class="w-4 h-4"></i> <span data-i18n="Tambah Sekolah">Tambah Sekolah</span>
+                        <i data-lucide="plus" class="w-4 h-4"></i> <span class="lang-text" data-ms="Tambah Sekolah" data-ar="إضافة مدرسة">Tambah Sekolah</span>
                     </button>
                     <button id="btn-add-teacher" onclick="openTeacherForm()" class="hidden items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-4 py-2.5 rounded-xl font-medium text-sm transition-all shadow-md whitespace-nowrap">
-                        <i data-lucide="user-plus" class="w-4 h-4"></i> <span data-i18n="Tambah Guru">Tambah Guru</span>
+                        <i data-lucide="user-plus" class="w-4 h-4"></i> <span class="lang-text" data-ms="Tambah Guru" data-ar="إضافة معلم">Tambah Guru</span>
                     </button>
                 </div>
             </section>
@@ -289,23 +294,22 @@
                     <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide">Nama Penuh</label>
                     <input required type="text" id="t-nama" oninput="autoDetectJantina()" class="w-full px-4 py-2.5 rounded-xl border border-slate-400 text-slate-900 uppercase focus:ring-2 focus:ring-blue-500 transition-all bg-white shadow-sm" />
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-bold text-slate-600 mb-1.5 uppercase tracking-wide">Jantina</label>
                         <select required id="t-jantina" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all bg-white shadow-sm font-medium">
-                            <option value="">- PILIH -</option>
-                            <option value="Lelaki">LELAKI</option>
-                            <option value="Perempuan">PEREMPUAN</option>
+                            <option value="">-- Pilih --</option>
+                            <option value="Lelaki">Lelaki</option>
+                            <option value="Perempuan">Perempuan</option>
                         </select>
                     </div>
-                    <div class="md:col-span-2">
+                    <div>
                         <label class="block text-xs font-bold text-slate-600 mb-1.5 uppercase tracking-wide">Kad Pengenalan</label>
                         <input required type="text" id="t-ic" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all bg-white shadow-sm font-mono" placeholder="Contoh: 880101-01-1234" />
                     </div>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="md:col-span-2">
-                        <label class="block text-xs font-bold text-slate-600 mb-1.5 uppercase tracking-wide">Alamat E-mel (Rasmi)</label>
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 mb-1.5 uppercase tracking-wide">Alamat E-mel (Rasmi)</label>
                         <input type="email" id="t-email" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-slate-900 lowercase focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all bg-white shadow-sm" placeholder="guru@moe-dl.edu.my" />
                     </div>
                 </div>
@@ -534,94 +538,9 @@
         let filterGred = 'Semua';
         let selectedSchool = null;
         let currentSortMode = 'kategori_az';
-
-        // --- SISTEM BAHASA (I18N) ---
-        let currentLang = 'BM';
-        const translations = {
-            'PPID KLUANG': 'PPID كلوانج',
-            'Sistem Maklumat Bersepadu': 'نظام المعلومات المتكامل',
-            'PROFIL SEKOLAH': 'ملف المدرسة',
-            'SENARAI SEKOLAH': 'قائمة المدارس',
-            'SENARAI GURU': 'قائمة المعلمين',
-            'LAPORAN & ANALISIS': 'التقارير والتحليلات',
-            'AKSES ADMIN': 'وصول المسؤول',
-            'LOG KELUAR': 'تسجيل خروج',
-            'PENGURUSAN SISTEM MAKLUMAT PPID KLUANG': 'إدارة نظام معلومات مكتب التعليم الإسلامي كلوانج',
-            'Pangkalan Data Bersepadu Pelajar & Guru': 'قاعدة بيانات متكاملة للطلاب والمعلمين',
-            'Sekolah Aktif': 'مدارس نشطة',
-            'Guru Aktif': 'معلمون نشطون',
-            'Cari rekod nama, pendaftaran, ic...': 'البحث في السجلات...',
-            'Semua Zon': 'جميع المناطق',
-            'Semua Kategori/Gred': 'جميع الفئات',
-            'Tambah Sekolah': 'إضافة مدرسة',
-            'Tambah Guru': 'إضافة معلم',
-            'No': 'رقم',
-            'Nama Sekolah': 'اسم المدرسة',
-            'Pendaftaran': 'التسجيل',
-            'Gred': 'الدرجة',
-            'Zon': 'المنطقة',
-            'Tindakan': 'إجراءات',
-            'Nama Guru': 'اسم المعلم',
-            'Jantina': 'الجنس',
-            'Sekolah': 'المدرسة',
-            'Jawatan': 'المنصب',
-            'Status': 'الحالة',
-            'No Telefon': 'رقم الهاتف',
-            'Tiada rekod.': 'لا يوجد سجل.',
-            'Zon 1': 'المنطقة 1',
-            'Zon 2': 'المنطقة 2',
-            'Zon 3': 'المنطقة 3'
-        };
-
-        const t = (text) => {
-            if (currentLang === 'BM') return text;
-            return translations[text] || text;
-        };
-
-        const toggleLanguage = () => {
-            currentLang = currentLang === 'BM' ? 'AR' : 'BM';
-            document.getElementById('lang-text').innerText = currentLang === 'BM' ? 'عربي (AR)' : 'BM';
-            
-            // Kemaskini elemen statik yang ada tag data-i18n
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (el.tagName === 'INPUT' && (el.type === 'text' || el.type === 'search')) {
-                    el.placeholder = t(key);
-                } else if (el.tagName === 'OPTION') {
-                    el.text = t(key);
-                } else {
-                    el.innerText = t(key);
-                }
-            });
-
-            // Re-render paparan jadual supaya tajuk kolum (thead) bertukar bahasa
-            if (activeTab === 'sekolah' || activeTab === 'guru') renderTable();
-            applyAdminState();
-        };
-        // -----------------------------
+        let currentLang = 'ms';
 
         // Helpers
-        const detectGenderFromName = (name) => {
-            if (!name) return '-';
-            const n = name.toUpperCase();
-            // Kesan BINTI, BT, BTE untuk perempuan
-            if (/\bBINTI\b|\bBT\b|\bBTE\b/.test(n)) return 'Perempuan';
-            // Kesan BIN untuk lelaki
-            if (/\bBIN\b/.test(n)) return 'Lelaki';
-            return '-';
-        };
-
-        const autoDetectJantina = () => {
-            const name = document.getElementById('t-nama').value;
-            const jantinaSelect = document.getElementById('t-jantina');
-            const detected = detectGenderFromName(name);
-            
-            // Hanya tukar secara auto jika jantina dapat dikesan
-            if (detected !== '-') {
-                jantinaSelect.value = detected;
-            }
-        };
-
         const normalizeSchoolName = (name) => {
             if (!name) return "";
             return name.toUpperCase().replace(/^(SA|S A|SRAB)\s+/g, '').replace(/\bKLG\b/g, 'KLUANG').replace(/\bBT\b/g, 'BATU').replace(/\bKG\b/g, 'KAMPUNG').replace(/\bAYER\b/g, 'AIR').replace(/\b1\b/g, '01').replace(/\b2\b/g, '02').replace(/\bHJ\b/g, 'HAJI').replace(/\bRENGAM\b/g, 'RENGGAM').replace(/[^A-Z0-9]/g, ''); 
@@ -667,6 +586,43 @@
             if (status === 'Bersara' || status === 'Berhenti') return 'bg-slate-200 text-slate-700';
             if (status === 'Meninggal Dunia') return 'bg-slate-800 text-white';
             return 'bg-slate-100 text-slate-600';
+        };
+
+        const autoDetectJantina = () => {
+            const nama = document.getElementById('t-nama').value.toUpperCase();
+            const jantinaSelect = document.getElementById('t-jantina');
+            if (nama.includes(' BINTI ') || nama.includes(' BT ') || nama.includes(' BTE ')) {
+                jantinaSelect.value = 'Perempuan';
+            } else if (nama.includes(' BIN ')) {
+                jantinaSelect.value = 'Lelaki';
+            }
+        };
+
+        const toggleLanguage = () => {
+            currentLang = currentLang === 'ms' ? 'ar' : 'ms';
+            document.getElementById('lang-text-display').innerText = currentLang === 'ms' ? 'عربي' : 'BM';
+            
+            document.querySelectorAll('.lang-text').forEach(el => {
+                if (currentLang === 'ar' && el.getAttribute('data-ar')) {
+                    el.innerText = el.getAttribute('data-ar');
+                } else if (currentLang === 'ms' && el.getAttribute('data-ms')) {
+                    el.innerText = el.getAttribute('data-ms');
+                }
+            });
+            
+            // Re-render select texts if active
+            const lblKat = document.getElementById('lbl-kategori');
+            if (lblKat) updateCustomSelectText('dd-kategori', 'lbl-kategori', 'Kategori');
+        };
+
+        const getTranslatedCat = (c) => {
+            if (currentLang === 'ar') {
+                if (c === 'SWASTA') return "المدارس الثانوية الخاصة (SMAS)";
+                if (c === 'PONDOK') return "المدارس الدينية (بوندوك) / MMJ";
+                if (c === 'TAJ') return "رياض الأطفال الدينية بجوهر (TAJ)";
+                if (c === 'PPID') return "مكتب التعليم الإسلامي للمنطقة (PPID)";
+            }
+            return getCategoryLabel(c);
         };
 
         const S = (id, nama, noDaftar, gred, alamat, zon, dun, parlimen, lokasi, statusBangunan, bilBilikDarjah, bilPejabat, tandasMurid, tandasGuru, pengawal, keluasan, statusOperasi, muridPagi, muridPetang, bilGuruTAJ=0, pengetua="", guruLelaki=0, guruPerempuan=0, muridLelaki=0, muridPerempuan=0, tarikhTamatDaftar="", statusDaftar="", catatan="", d1=0, d2=0, d3=0, d4=0, d5=0, d6=0) => ({ id, nama, noDaftar, gred, alamat, zon, dun, parlimen, lokasi, statusBangunan, bilBilikDarjah, bilPejabat, tandasMurid, tandasGuru, pengawal, keluasan, statusOperasi, muridPagi, muridPetang, bilGuruTAJ, pengetua, guruLelaki, guruPerempuan, muridLelaki, muridPerempuan, tarikhTamatDaftar, statusDaftar, catatan, d1, d2, d3, d4, d5, d6 });
@@ -1270,26 +1226,35 @@
                 let tid = 1;
                 teachers = rawTeachers.split('\n').map(l => l.trim()).filter(Boolean).map(line => {
                     let p = line.split('|');
-                    let namaGuru = p[0] ? p[0].trim() : "";
+                    let nama = p[0] ? p[0].trim() : "";
+                    let jantina = "Tiada";
+                    if (nama.includes(' BINTI ') || nama.includes(' BT ') || nama.includes(' BTE ')) jantina = "Perempuan";
+                    else if (nama.includes(' BIN ')) jantina = "Lelaki";
+
                     return { 
                         id: tid++, 
-                        nama: namaGuru, 
+                        nama: nama, 
                         sekolah: p[1] ? p[1].trim() : "", 
                         gred: p[2] ? p[2].trim() : "", 
                         jawatan: p[3] ? p[3].trim() : "", 
                         ic: p[4] ? p[4].trim() : "-", 
                         email: p[5] ? p[5].trim() : "-", 
-                        jantina: detectGenderFromName(namaGuru),
-                        status: 'Aktif' 
+                        status: 'Aktif',
+                        jantina: jantina
                     };
                 }).filter(t => !permanentlyRemovedTeachers.includes(t.nama));
             } else {
                 teachers = cachedTeachers;
-                // PATCH: Pastikan data guru dari cache lama dikemaskini dengan ID dan Jantina
+                // PATCH: Pastikan data guru dari cache lama dikemaskini dengan ID & jantina
                 let tSave = false;
                 teachers.forEach((t, i) => { 
                     if(!t.id) { t.id = Date.now() + 1000 + i; tSave = true; } 
-                    if(!t.jantina) { t.jantina = detectGenderFromName(t.nama); tSave = true; }
+                    if(!t.jantina) {
+                        t.jantina = "Tiada";
+                        if (t.nama.includes(' BINTI ') || t.nama.includes(' BT ') || t.nama.includes(' BTE ')) t.jantina = "Perempuan";
+                        else if (t.nama.includes(' BIN ')) t.jantina = "Lelaki";
+                        tSave = true;
+                    }
                 });
                 if(tSave) localStorage.setItem('teacherDataDB', JSON.stringify(teachers));
             }
@@ -1345,6 +1310,14 @@
             bilanganGuruTAJ: { label: "Bilangan Guru TAJ", get: s => {
                 return getTeachersForSchool(s.nama).filter(t => t.status === 'Aktif' && t.gred === 'TAJ').length;
             }},
+            bilanganGuruLelaki: { label: "Bil Guru Lelaki", get: s => {
+                if (['TAHFIZ', 'PONDOK', 'SWASTA', 'MMJ'].includes(s.gred)) return Number(s.guruLelaki) || 0;
+                return getTeachersForSchool(s.nama).filter(t => t.status === 'Aktif' && t.jantina === 'Lelaki').length;
+            }},
+            bilanganGuruPerempuan: { label: "Bil Guru Perempuan", get: s => {
+                if (['TAHFIZ', 'PONDOK', 'SWASTA', 'MMJ'].includes(s.gred)) return Number(s.guruPerempuan) || 0;
+                return getTeachersForSchool(s.nama).filter(t => t.status === 'Aktif' && t.jantina === 'Perempuan').length;
+            }},
             senaraiKakitanganPPID: { label: "Senarai Kakitangan PPID", get: s => {
                 if (s.gred !== 'PPID' && !s.nama.includes('PPID')) return '-';
                 const staffList = getTeachersForSchool(s.nama).filter(t=>t.status==='Aktif');
@@ -1352,6 +1325,11 @@
                 return `<ol class="list-decimal list-inside space-y-1">` + staffList.map(t => `<li class="pl-1">${t.nama} <span class="text-sky-600 font-semibold">(${t.jawatan})</span></li>`).join('') + `</ol>`;
             }},
             senaraiGuru: { label: "Senarai Guru", get: s => {
+                const guruList = getTeachersForSchool(s.nama).filter(t=>t.status==='Aktif');
+                if (guruList.length === 0) return '-';
+                return `<ol class="list-decimal list-inside space-y-1">` + guruList.map(t => `<li class="pl-1">${t.nama}</li>`).join('') + `</ol>`;
+            }},
+            senaraiGuruSahaja: { label: "Senarai Guru Sahaja", get: s => {
                 const guruList = getTeachersForSchool(s.nama).filter(t=>t.status==='Aktif');
                 if (guruList.length === 0) return '-';
                 return `<ol class="list-decimal list-inside space-y-1">` + guruList.map(t => `<li class="pl-1">${t.nama}</li>`).join('') + `</ol>`;
@@ -1370,6 +1348,11 @@
                 const guruList = getTeachersForSchool(s.nama).filter(t=>t.status==='Aktif');
                 if (guruList.length === 0) return '-';
                 return `<ol class="list-decimal list-inside space-y-1">` + guruList.map(t => `<li class="pl-1">${t.jawatan && t.jawatan !== '-' ? t.jawatan : '<span class="text-slate-400 italic">Tiada Rekod</span>'}</li>`).join('') + `</ol>`;
+            }},
+            jantinaGuru: { label: "Jantina Guru", get: s => {
+                const guruList = getTeachersForSchool(s.nama).filter(t=>t.status==='Aktif');
+                if (guruList.length === 0) return '-';
+                return `<ol class="list-decimal list-inside space-y-1">` + guruList.map(t => `<li class="pl-1">${t.jantina && t.jantina !== 'Tiada' ? t.jantina : '<span class="text-slate-400 italic">Tiada Rekod</span>'}</li>`).join('') + `</ol>`;
             }}
         };
 
@@ -1520,15 +1503,15 @@
             if (activeTab === 'sekolah') {
                 const data = getFilteredSchools();
                 thead.innerHTML = `<tr>
-                    <th class="px-4 py-3 rounded-tl-xl w-10 text-center">${t('No')}</th>
-                    <th class="px-4 py-3">${t('Nama Sekolah')}</th>
-                    <th class="px-4 py-3">${t('Pendaftaran')}</th>
-                    <th class="px-4 py-3">${t('Gred')}</th>
-                    <th class="px-4 py-3">${t('Zon')}</th>
-                    <th class="px-4 py-3 rounded-tr-xl text-center">${t('Tindakan')}</th>
+                    <th class="px-4 py-3 rounded-tl-xl w-10 text-center">No</th>
+                    <th class="px-4 py-3">Nama Sekolah</th>
+                    <th class="px-4 py-3">Pendaftaran</th>
+                    <th class="px-4 py-3">Gred</th>
+                    <th class="px-4 py-3">Zon</th>
+                    <th class="px-4 py-3 rounded-tr-xl text-center">Tindakan</th>
                 </tr>`;
                 
-                if(data.length === 0) tbody.innerHTML = `<tr><td colspan="6" class="px-4 py-8 text-center text-slate-500">${t('Tiada rekod.')}</td></tr>`;
+                if(data.length === 0) tbody.innerHTML = `<tr><td colspan="6" class="px-4 py-8 text-center text-slate-500">Tiada rekod.</td></tr>`;
                 else {
                     tbody.innerHTML = data.map((s, i) => `
                         <tr class="hover:bg-slate-50 transition-colors group">
@@ -1536,7 +1519,7 @@
                             <td class="px-4 py-3 font-bold text-slate-700"><a href="#" onclick="event.preventDefault(); openSchoolDetails(${s.id})" class="hover:text-sky-600 hover:underline">${s.nama}</a></td>
                             <td class="px-4 py-3 font-mono text-xs text-slate-500">${s.noDaftar || '-'}</td>
                             <td class="px-4 py-3"><span class="px-2 py-0.5 rounded text-[10px] font-bold ${getBadgeClass(s.gred)}">${s.gred}</span></td>
-                            <td class="px-4 py-3 text-slate-600">${t('Zon')} ${s.zon}</td>
+                            <td class="px-4 py-3 text-slate-600">Zon ${s.zon}</td>
                             <td class="px-4 py-3 text-center">
                                 <button onclick="openSchoolDetails(${s.id})" class="p-1.5 text-sky-600 hover:bg-sky-50 rounded-lg transition-colors inline-block" title="Lihat"><i data-lucide="eye" class="w-4 h-4"></i></button>
                             </td>
@@ -1546,26 +1529,24 @@
             } else if (activeTab === 'guru') {
                 const data = getFilteredTeachers();
                 thead.innerHTML = `<tr>
-                    <th class="px-4 py-3 rounded-tl-xl w-10 text-center">${t('No')}</th>
-                    <th class="px-4 py-3">${t('Nama Guru')}</th>
-                    <th class="px-4 py-3 hidden md:table-cell">${t('Jantina')}</th>
-                    <th class="px-4 py-3 hidden lg:table-cell">${t('No Telefon')}</th>
-                    <th class="px-4 py-3">${t('Sekolah')}</th>
-                    <th class="px-4 py-3">${t('Jawatan')}</th>
-                    <th class="px-4 py-3">${t('Status')}</th>
-                    <th class="px-4 py-3 rounded-tr-xl text-center admin-only ${isAdmin ? '' : 'hidden'}">${t('Tindakan')}</th>
+                    <th class="px-4 py-3 rounded-tl-xl w-10 text-center">No</th>
+                    <th class="px-4 py-3">Nama Guru</th>
+                    <th class="px-4 py-3">Jantina</th>
+                    <th class="px-4 py-3">Sekolah</th>
+                    <th class="px-4 py-3">Jawatan</th>
+                    <th class="px-4 py-3">Status</th>
+                    <th class="px-4 py-3 rounded-tr-xl text-center admin-only ${isAdmin ? '' : 'hidden'}">Tindakan</th>
                 </tr>`;
                 
-                if(data.length === 0) tbody.innerHTML = `<tr><td colspan="8" class="px-4 py-8 text-center text-slate-500">${t('Tiada rekod.')}</td></tr>`;
+                if(data.length === 0) tbody.innerHTML = `<tr><td colspan="7" class="px-4 py-8 text-center text-slate-500">Tiada rekod.</td></tr>`;
                 else {
                     tbody.innerHTML = data.map((t, i) => `
-                        <tr class="hover:bg-slate-50 transition-colors group">
+                        <tr class="hover:bg-slate-50 transition-colors">
                             <td class="px-4 py-3 text-center text-slate-400">${i+1}</td>
                             <td class="px-4 py-3 font-bold text-slate-700">${t.nama}
                                 <div class="text-[10px] text-slate-400 font-mono mt-0.5">${t.ic}</div>
                             </td>
-                            <td class="px-4 py-3 hidden md:table-cell text-slate-600 font-medium text-xs">${t.jantina || '-'}</td>
-                            <td class="px-4 py-3 hidden lg:table-cell text-slate-600 font-medium text-xs">${t.telefon || '-'}</td>
+                            <td class="px-4 py-3 text-slate-600 text-xs">${t.jantina || '-'}</td>
                             <td class="px-4 py-3 text-slate-600 font-medium text-xs">${t.sekolah}</td>
                             <td class="px-4 py-3 text-slate-600 text-xs">${t.gred} - ${t.jawatan}</td>
                             <td class="px-4 py-3"><span class="px-2 py-0.5 rounded text-[10px] font-bold ${getStatusBadge(t.status)}">${t.status}</span></td>
@@ -1626,9 +1607,10 @@
             if (checkedBoxes.length === 0) {
                  labelEl.innerHTML = `<span class="text-slate-400 font-normal">Sila pilih...</span>`;
             } else if (checkedBoxes.length === totalBoxes) {
-                 labelEl.innerHTML = `<span class="font-bold text-slate-700">${prefixText} (Semua)</span>`;
+                 let txt = prefixText === 'Kategori' && currentLang === 'ar' ? 'جميع الفئات' : prefixText + ' (Semua)';
+                 labelEl.innerHTML = `<span class="font-bold text-slate-700">${txt}</span>`;
             } else if (checkedBoxes.length <= 2) {
-                 const texts = checkedBoxes.map(cb => cb.getAttribute('data-label') || cb.value);
+                 const texts = checkedBoxes.map(cb => (currentLang==='ar' && cb.getAttribute('data-label-ar')) ? cb.getAttribute('data-label-ar') : (cb.getAttribute('data-label') || cb.value));
                  labelEl.innerHTML = `<span class="font-bold text-slate-700 truncate block">${texts.join(', ')}</span>`;
             } else {
                  labelEl.innerHTML = `<span class="font-bold text-slate-700">${prefixText} (${checkedBoxes.length} dipilih)</span>`;
@@ -1715,8 +1697,8 @@
                 // 1. Kategori Institusi
                 let catListItems = ['SAKNJ', 'TAJ', 'TAHFIZ', 'PONDOK', 'SWASTA', 'PPID'].map(c => `
                     <label class="flex items-center gap-2.5 text-sm cursor-pointer hover:bg-slate-50 p-2 rounded-lg transition-colors">
-                        <input type="checkbox" value="${c}" data-label="${getCategoryLabel(c)}" class="cat-check accent-sky-600 w-4 h-4 rounded border-slate-300" onchange="handleItemChange('dd-kategori', 'lbl-kategori', 'Kategori', 'all-cat')"> 
-                        <span class="font-medium text-slate-700">${getCategoryLabel(c)}</span>
+                        <input type="checkbox" value="${c}" data-label="${getCategoryLabel(c)}" data-label-ar="${getTranslatedCat(c)}" class="cat-check accent-sky-600 w-4 h-4 rounded border-slate-300" onchange="handleItemChange('dd-kategori', 'lbl-kategori', 'Kategori', 'all-cat')"> 
+                        <span class="font-medium text-slate-700 lang-text" data-ms="${getCategoryLabel(c)}" data-ar="${getTranslatedCat(c)}">${currentLang === 'ar' ? getTranslatedCat(c) : getCategoryLabel(c)}</span>
                     </label>
                 `).join('');
                 
@@ -1730,7 +1712,7 @@
                         <div class="custom-select-dropdown p-2">
                             <label class="flex items-center gap-2.5 text-sm cursor-pointer hover:bg-slate-50 p-2 rounded-lg transition-colors border-b border-slate-100 mb-1 pb-2">
                                 <input type="checkbox" id="all-cat" class="select-all-cb accent-sky-600 w-4 h-4 rounded border-slate-300" onchange="handleSelectAllChange(event, 'dd-kategori', 'lbl-kategori', 'Kategori')"> 
-                                <span class="font-bold text-slate-800">Pilih Semua</span>
+                                <span class="font-bold text-slate-800 lang-text" data-ms="Semua Kategori" data-ar="جميع الفئات">${currentLang === 'ar' ? 'جميع الفئات' : 'Semua Kategori'}</span>
                             </label>
                             ${catListItems}
                         </div>
@@ -1846,6 +1828,9 @@
                                         <option value="parlimen">Parlimen (A-Z)</option>
                                         <option value="lelaki_desc">Murid Lelaki / Pagi (Tertinggi)</option>
                                         <option value="perempuan_desc">Murid Perempuan / Petang (Tertinggi)</option>
+                                        <option value="status_az">Status Operasi (A-Z)</option>
+                                        <option value="jantina_az">Jantina Guru Majoriti (Sekolah)</option>
+                                        <option value="jantina_guru">Jantina Guru (Susunan Individu L/P)</option>
                                     </select>
                                  </div>
                              </div>
@@ -1938,6 +1923,27 @@
                     let bP = (Number(b.muridPetang)||0) + (Number(b.muridPerempuan)||0);
                     return bP - aP || a.nama.localeCompare(b.nama);
                 }
+                if (sortMode === 'status_az') {
+                    return (a.statusOperasi || '').localeCompare(b.statusOperasi || '') || a.nama.localeCompare(b.nama);
+                }
+                if (sortMode === 'jantina_az' || sortMode === 'jantina_guru') {
+                    // Kira majoriti jantina guru
+                    const getMajoriti = (school) => {
+                        let l = 0, p = 0;
+                        if (['TAHFIZ', 'PONDOK', 'SWASTA', 'MMJ'].includes(getSchoolCategory(school))) {
+                            l = Number(school.guruLelaki) || 0;
+                            p = Number(school.guruPerempuan) || 0;
+                        } else {
+                            const teachersList = getTeachersForSchool(school.nama).filter(t => t.status === 'Aktif');
+                            l = teachersList.filter(t => t.jantina === 'Lelaki').length;
+                            p = teachersList.filter(t => t.jantina === 'Perempuan').length;
+                        }
+                        if (l > p) return 'Lelaki';
+                        if (p > l) return 'Perempuan';
+                        return 'Sama';
+                    };
+                    return getMajoriti(a).localeCompare(getMajoriti(b)) || a.nama.localeCompare(b.nama);
+                }
                 
                 // Default: kategori_az
                 let catDiff = getSchoolCategory(a).localeCompare(getSchoolCategory(b));
@@ -1947,9 +1953,16 @@
                 return a.nama.localeCompare(b.nama);
             });
 
+            // LOGIK BAHARU: Flatten senarai jika 'Senarai Guru Sahaja' dipilih
+            const hideInstitusi = selectedReportCols.includes('senaraiGuruSahaja');
+            const flattenTeacherList = selectedReportCols.includes('senaraiGuruSahaja');
+
             let thead = `<thead class="bg-slate-800 text-white font-bold uppercase text-[10px] tracking-wider border-b-2 border-slate-900"><tr>
-                <th class="px-3 py-2.5 w-8 text-center border-r border-slate-700">Bil</th>
-                <th class="px-4 py-2.5 border-r border-slate-700 min-w-[200px] sticky left-0 bg-slate-800 z-10">Nama Institusi</th>`;
+                <th class="px-3 py-2.5 w-8 text-center border-r border-slate-700">Bil</th>`;
+            
+            if (!hideInstitusi) {
+                thead += `<th class="px-4 py-2.5 border-r border-slate-700 min-w-[200px] sticky left-0 bg-slate-800 z-10">Nama Institusi</th>`;
+            }
             
             selectedReportCols.forEach(k => {
                 thead += `<th class="px-4 py-2.5 border-r border-slate-700">${reportColumnsAvailable[k].label}</th>`;
@@ -1962,34 +1975,84 @@
             selectedReportCols.forEach(k => totals[k] = 0);
 
             if(data.length === 0) {
-                tbody += `<tr><td colspan="${2 + selectedReportCols.length}" class="p-8 text-center text-slate-500">Tiada data padanan dijumpai.</td></tr>`;
+                tbody += `<tr><td colspan="${(hideInstitusi ? 1 : 2) + selectedReportCols.length}" class="p-8 text-center text-slate-500">Tiada data padanan dijumpai.</td></tr>`;
             } else {
-                data.forEach((s, i) => {
-                    tbody += `<tr class="hover:bg-sky-50 transition-colors">
-                        <td class="px-3 py-2 text-center text-slate-500 text-xs border-r border-slate-100">${i+1}</td>
-                        <td class="px-4 py-2 font-bold text-slate-800 text-xs border-r border-slate-100 sticky left-0 bg-white group-hover:bg-sky-50 transition-colors">${s.nama}</td>`;
+                
+                // PREPARE FLAT DATA UNTUK PAPARAN GURU BERTERUSAN
+                let rowsToRender = [];
+                if (flattenTeacherList) {
+                    data.forEach(s => {
+                        const guruList = getTeachersForSchool(s.nama).filter(t=>t.status==='Aktif');
+                        if (guruList.length > 0) {
+                            guruList.forEach(t => rowsToRender.push({ school: s, teacher: t }));
+                        }
+                        // Jika sekolah tiada guru, ia diabaikan dari jadual agar tiada "gap kotak"
+                    });
                     
-                    selectedReportCols.forEach(k => {
-                        let val = reportColumnsAvailable[k].get(s);
-                        let align = typeof val === 'number' ? 'text-center font-mono font-medium' : 'text-left';
-                        if(typeof val === 'number') totals[k] += val;
-                        // specific wrap for senarai guru, senarai emel & senarai ic
-                        if (k === 'senaraiGuru' || k === 'senaraiEmel' || k === 'senaraiIC' || k === 'senaraiJawatan' || k === 'senaraiKakitanganPPID') align += ' whitespace-normal min-w-[300px] text-[10px] leading-relaxed';
-                        
-                        tbody += `<td class="px-4 py-2 ${align} text-xs border-r border-slate-100 print-wrap">${val}</td>`;
-                    });
-                    tbody += `</tr>`;
-                });
+                    // JIKA 'JANTINA GURU' DIPILIH, SUSUN SENARAI FLAT IKUT JANTINA
+                    if (sortMode === 'jantina_guru') {
+                        rowsToRender.sort((a, b) => {
+                            let jA = a.teacher.jantina || 'Tiada';
+                            let jB = b.teacher.jantina || 'Tiada';
+                            return jA.localeCompare(jB) || a.teacher.nama.localeCompare(b.teacher.nama);
+                        });
+                    }
+                } else {
+                    rowsToRender = data.map(s => ({ school: s, teacher: null }));
+                }
 
-                if (showTotalRow) {
-                    tbody += `<tr class="bg-slate-100 font-extrabold text-slate-800 border-t-2 border-slate-300">
-                        <td colspan="2" class="px-4 py-3 text-right uppercase text-xs tracking-wider border-r border-slate-200 sticky left-0 bg-slate-100">Jumlah Keseluruhan</td>`;
-                    selectedReportCols.forEach(k => {
-                        let isNumCol = typeof reportColumnsAvailable[k].get(data[0] || {}) === 'number';
-                        let val = isNumCol ? totals[k] : '-';
-                        tbody += `<td class="px-4 py-3 text-center font-mono text-xs border-r border-slate-200">${val}</td>`;
+                if (rowsToRender.length === 0) {
+                    tbody += `<tr><td colspan="${(hideInstitusi ? 1 : 2) + selectedReportCols.length}" class="p-8 text-center text-slate-500">Tiada guru dijumpai dalam senarai sekolah yang ditapis.</td></tr>`;
+                } else {
+                    rowsToRender.forEach((item, i) => {
+                        const s = item.school;
+                        const t = item.teacher;
+                        
+                        tbody += `<tr class="hover:bg-sky-50 transition-colors">
+                            <td class="px-3 py-2 text-center text-slate-500 text-xs border-r border-slate-100">${i+1}</td>`;
+                            
+                        if (!hideInstitusi) {
+                            tbody += `<td class="px-4 py-2 font-bold text-slate-800 text-xs border-r border-slate-100 sticky left-0 bg-white group-hover:bg-sky-50 transition-colors">${s.nama}</td>`;
+                        }
+                        
+                        selectedReportCols.forEach(k => {
+                            let val;
+                            // Gantikan nilai kolum jika flat mode aktif
+                            if (flattenTeacherList && k === 'senaraiGuruSahaja') val = t.nama;
+                            else if (flattenTeacherList && k === 'senaraiEmel') val = t.email && t.email !== '-' ? t.email : '<span class="text-slate-400 italic">Tiada Rekod</span>';
+                            else if (flattenTeacherList && k === 'senaraiIC') val = t.ic && t.ic !== '-' ? t.ic : '<span class="text-slate-400 italic">Tiada Rekod</span>';
+                            else if (flattenTeacherList && k === 'senaraiJawatan') val = t.jawatan && t.jawatan !== '-' ? t.jawatan : '<span class="text-slate-400 italic">Tiada Rekod</span>';
+                            else if (flattenTeacherList && k === 'jantinaGuru') val = t.jantina && t.jantina !== 'Tiada' ? t.jantina : '<span class="text-slate-400 italic">Tiada Rekod</span>';
+                            else {
+                                val = reportColumnsAvailable[k].get(s);
+                            }
+
+                            let align = (typeof reportColumnsAvailable[k].get(s) === 'number' && !flattenTeacherList) ? 'text-center font-mono font-medium' : 'text-left';
+                            if (k.includes('senarai')) align += ' print-wrap whitespace-normal min-w-[200px] text-[10px] leading-relaxed';
+                            
+                            tbody += `<td class="px-4 py-2 ${align} text-xs border-r border-slate-100">${val}</td>`;
+                        });
+                        tbody += `</tr>`;
                     });
-                    tbody += `</tr>`;
+
+                    if (showTotalRow) {
+                        // Kira jumlah keseluruhan berdasarkan sekolah asal bagi mengelakkan pertindihan
+                        data.forEach(s => {
+                            selectedReportCols.forEach(k => {
+                                let v = reportColumnsAvailable[k].get(s);
+                                if (typeof v === 'number') totals[k] += v;
+                            });
+                        });
+                        
+                        tbody += `<tr class="bg-slate-100 font-extrabold text-slate-800 border-t-2 border-slate-300">
+                            <td colspan="${hideInstitusi ? 1 : 2}" class="px-4 py-3 text-right uppercase text-xs tracking-wider border-r border-slate-200 sticky left-0 bg-slate-100">Jumlah Keseluruhan</td>`;
+                        selectedReportCols.forEach(k => {
+                            let isNumCol = typeof reportColumnsAvailable[k].get(data[0] || {}) === 'number';
+                            let val = isNumCol ? totals[k] : '-';
+                            tbody += `<td class="px-4 py-3 text-center font-mono text-xs border-r border-slate-200">${val}</td>`;
+                        });
+                        tbody += `</tr>`;
+                    }
                 }
             }
             tbody += `</tbody>`;
@@ -2055,7 +2118,7 @@
             if (isAdmin) {
                 if (topNavBar) topNavBar.classList.remove('hidden');
                 
-                btnToggle.innerHTML = `<i data-lucide="shield-off" class="w-5 h-5 shrink-0"></i><span id="nav-auth-text" class="block text-sm font-bold whitespace-nowrap" data-i18n="LOG KELUAR">${t('LOG KELUAR')}</span>`;
+                btnToggle.innerHTML = '<i data-lucide="shield-off" class="w-5 h-5 shrink-0"></i><span id="nav-auth-text" class="block text-sm font-bold whitespace-nowrap">LOG KELUAR</span>';
                 btnToggle.classList.replace('bg-sky-950', 'bg-red-700');
                 btnToggle.classList.replace('hover:bg-sky-900', 'hover:bg-red-800');
                 btnToggle.classList.replace('border-sky-700', 'border-red-600');
@@ -2071,7 +2134,7 @@
             } else {
                 if (topNavBar) topNavBar.classList.add('hidden');
                 
-                btnToggle.innerHTML = `<i data-lucide="shield" class="w-5 h-5 shrink-0"></i><span id="nav-auth-text" class="block text-sm font-bold whitespace-nowrap" data-i18n="AKSES ADMIN">${t('AKSES ADMIN')}</span>`;
+                btnToggle.innerHTML = '<i data-lucide="shield" class="w-5 h-5 shrink-0"></i><span id="nav-auth-text" class="block text-sm font-bold whitespace-nowrap">AKSES ADMIN</span>';
                 btnToggle.classList.replace('bg-red-700', 'bg-sky-950');
                 btnToggle.classList.replace('hover:bg-red-800', 'hover:bg-sky-900');
                 btnToggle.classList.replace('border-red-600', 'border-sky-700');
