@@ -94,7 +94,7 @@
                     </div>
                     <div class="block">
                         <h1 class="font-extrabold text-white text-sm md:text-base leading-tight tracking-tight whitespace-nowrap" data-i18n="PPID KLUANG">PPID KLUANG</h1>
-                        <p class="text-[10px] md:text-xs text-sky-200 uppercase font-semibold mt-0.5 whitespace-nowrap tracking-wide" data-i18n="Sistem Maklumat Bersepadu">Sistem Maklumat Bersepadu</p>
+                        <p class="text-[10px] md:text-xs text-sky-200 uppercase font-semibold mt-0.5 whitespace-nowrap tracking-wide" data-i18n="Sistem Maklumat">Sistem Maklumat</p>
                     </div>
                 </div>
             </div>
@@ -126,7 +126,7 @@
                 
                 <button id="btn-lang-toggle" onclick="toggleLanguage()" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl transition-all text-emerald-300 hover:bg-emerald-800 hover:text-white font-bold text-sm border border-emerald-700/50 group shrink-0 ml-1" title="Tukar Bahasa / Change Language">
                     <i data-lucide="globe" class="w-4 h-4 shrink-0 transition-transform group-hover:scale-110"></i>
-                    <span id="lang-text">عربي (AR)</span>
+                    <span id="lang-text">عربي</span>
                 </button>
             </div>
         </nav>
@@ -573,7 +573,7 @@
 
         const toggleLanguage = () => {
             currentLang = currentLang === 'BM' ? 'AR' : 'BM';
-            document.getElementById('lang-text').innerText = currentLang === 'BM' ? 'عربي (AR)' : 'BM';
+            document.getElementById('lang-text').innerText = currentLang === 'BM' ? 'عربي' : 'BM';
             
             // Kemaskini elemen statik yang ada tag data-i18n
             document.querySelectorAll('[data-i18n]').forEach(el => {
