@@ -1202,6 +1202,12 @@
                 schools = cachedSchools;
                 // PATCH: Pastikan data sekolah dari cache lama dikemaskini dengan ID (Jika tiada)
                 let sSave = false;
+                
+                // PATCH: Membuang rekod ralat 'PPID' (duplicate/test data) dari cache pelayar
+                const initialLength = schools.length;
+                schools = schools.filter(s => s.nama !== 'PPID');
+                if (schools.length !== initialLength) sSave = true;
+
                 schools.forEach((s, i) => { 
                     if(!s.id) { s.id = Date.now() + i; sSave = true; } 
                     
