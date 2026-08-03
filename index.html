@@ -89,12 +89,12 @@
             
             <div class="flex items-center justify-between w-full lg:w-auto">
                 <div class="flex items-center gap-3">
-                    <div class="shrink-0 w-12 h-12 rounded-xl overflow-hidden bg-white border border-sky-200 shadow-sm flex items-center justify-center p-0.5">
-                        <img src="https://i.ibb.co/fGr8swdd/ppid-removebg-preview.png" alt="Logo PPID Kluang" class="w-full h-full object-contain transform scale-110" onerror="this.src='https://placehold.co/100x100/0284c7/ffffff?text=PPID'">
+                    <div class="shrink-0 w-12 h-12 rounded-xl overflow-hidden bg-white border border-sky-200 shadow-sm flex items-center justify-center p-1">
+                        <img src="logo ppid kluang.ico" alt="Logo PPID Kluang" class="w-full h-full object-contain" onerror="this.src='https://placehold.co/100x100/0284c7/ffffff?text=PPID'">
                     </div>
                     <div class="block">
                         <h1 class="font-extrabold text-white text-sm md:text-base leading-tight tracking-tight whitespace-nowrap" data-i18n="PPID KLUANG">PPID KLUANG</h1>
-                        <p class="text-[10px] md:text-xs text-sky-200 uppercase font-semibold mt-0.5 whitespace-nowrap tracking-wide" data-i18n="Sistem Maklumat Bersepadu">SISTEM MAKLUMAT</p>
+                        <p class="text-[10px] md:text-xs text-sky-200 uppercase font-semibold mt-0.5 whitespace-nowrap tracking-wide" data-i18n="Sistem Maklumat Bersepadu">Sistem Maklumat Bersepadu</p>
                     </div>
                 </div>
             </div>
@@ -126,7 +126,7 @@
                 
                 <button id="btn-lang-toggle" onclick="toggleLanguage()" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl transition-all text-emerald-300 hover:bg-emerald-800 hover:text-white font-bold text-sm border border-emerald-700/50 group shrink-0 ml-1" title="Tukar Bahasa / Change Language">
                     <i data-lucide="globe" class="w-4 h-4 shrink-0 transition-transform group-hover:scale-110"></i>
-                    <span id="lang-text">عربي</span>
+                    <span id="lang-text">عربي (AR)</span>
                 </button>
             </div>
         </nav>
@@ -170,10 +170,10 @@
                     </select>
                     <select id="filter-gred" onchange="handleFilterChange()" class="flex-1 md:flex-none px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium">
                         <option value="Semua" data-i18n="Semua Kategori/Gred">Semua Kategori/Gred</option>
-                        <option value="SMAS" data-i18n="Menengah Swasta (SMAS)">Menengah Swasta (SMAS)</option>
-                        <option value="PONDOK" data-i18n="Pondok / MMJ">Pondok / MMJ</option>
-                        <option value="TAJ" data-i18n="Tadika Agama Johor (TAJ)">Tadika Agama Johor (TAJ)</option>
-                        <option value="PPID" data-i18n="Pejabat Pendidikan Islam Daerah (PPID)">Pejabat Pendidikan Islam Daerah (PPID)</option>
+                        <option value="SMAS">Menengah Swasta (SMAS)</option>
+                        <option value="PONDOK">Pondok / MMJ</option>
+                        <option value="TAJ">Tadika Agama Johor (TAJ)</option>
+                        <option value="PPID">Pejabat Pendidikan Islam Daerah (PPID)</option>
                     </select>
                     <button id="btn-add-school" onclick="openSchoolForm()" class="hidden items-center justify-center gap-2 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white px-4 py-2.5 rounded-xl font-medium text-sm transition-all shadow-md whitespace-nowrap">
                         <i data-lucide="plus" class="w-4 h-4"></i> <span data-i18n="Tambah Sekolah">Tambah Sekolah</span>
@@ -287,14 +287,24 @@
                 <input type="hidden" id="t-id">
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wide">Nama Penuh</label>
-                    <input required type="text" id="t-nama" class="w-full px-4 py-2.5 rounded-xl border border-slate-400 text-slate-900 uppercase focus:ring-2 focus:ring-blue-500 transition-all bg-white shadow-sm" />
+                    <input required type="text" id="t-nama" oninput="autoDetectJantina()" class="w-full px-4 py-2.5 rounded-xl border border-slate-400 text-slate-900 uppercase focus:ring-2 focus:ring-blue-500 transition-all bg-white shadow-sm" />
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div>
+                        <label class="block text-xs font-bold text-slate-600 mb-1.5 uppercase tracking-wide">Jantina</label>
+                        <select required id="t-jantina" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all bg-white shadow-sm font-medium">
+                            <option value="">- PILIH -</option>
+                            <option value="Lelaki">LELAKI</option>
+                            <option value="Perempuan">PEREMPUAN</option>
+                        </select>
+                    </div>
+                    <div class="md:col-span-2">
                         <label class="block text-xs font-bold text-slate-600 mb-1.5 uppercase tracking-wide">Kad Pengenalan</label>
                         <input required type="text" id="t-ic" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all bg-white shadow-sm font-mono" placeholder="Contoh: 880101-01-1234" />
                     </div>
-                    <div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="md:col-span-2">
                         <label class="block text-xs font-bold text-slate-600 mb-1.5 uppercase tracking-wide">Alamat E-mel (Rasmi)</label>
                         <input type="email" id="t-email" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-slate-900 lowercase focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all bg-white shadow-sm" placeholder="guru@moe-dl.edu.my" />
                     </div>
@@ -552,6 +562,7 @@
             'Zon': 'المنطقة',
             'Tindakan': 'إجراءات',
             'Nama Guru': 'اسم المعلم',
+            'Jantina': 'الجنس',
             'Sekolah': 'المدرسة',
             'Jawatan': 'المنصب',
             'Status': 'الحالة',
@@ -559,11 +570,7 @@
             'Tiada rekod.': 'لا يوجد سجل.',
             'Zon 1': 'المنطقة 1',
             'Zon 2': 'المنطقة 2',
-            'Zon 3': 'المنطقة 3',
-            'Menengah Swasta (SMAS)': 'المدارس الثانوية الخاصة (SMAS)',
-            'Pondok / MMJ': 'المدارس الدينية (بوندوك) / MMJ',
-            'Tadika Agama Johor (TAJ)': 'رياض الأطفال الدينية بجوهر (TAJ)',
-            'Pejabat Pendidikan Islam Daerah (PPID)': 'مكتب التعليم الإسلامي للمنطقة (PPID)'
+            'Zon 3': 'المنطقة 3'
         };
 
         const t = (text) => {
@@ -573,7 +580,7 @@
 
         const toggleLanguage = () => {
             currentLang = currentLang === 'BM' ? 'AR' : 'BM';
-            document.getElementById('lang-text').innerText = currentLang === 'BM' ? 'عربي' : 'BM';
+            document.getElementById('lang-text').innerText = currentLang === 'BM' ? 'عربي (AR)' : 'BM';
             
             // Kemaskini elemen statik yang ada tag data-i18n
             document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -594,6 +601,27 @@
         // -----------------------------
 
         // Helpers
+        const detectGenderFromName = (name) => {
+            if (!name) return '-';
+            const n = name.toUpperCase();
+            // Kesan BINTI, BT, BTE untuk perempuan
+            if (/\bBINTI\b|\bBT\b|\bBTE\b/.test(n)) return 'Perempuan';
+            // Kesan BIN untuk lelaki
+            if (/\bBIN\b/.test(n)) return 'Lelaki';
+            return '-';
+        };
+
+        const autoDetectJantina = () => {
+            const name = document.getElementById('t-nama').value;
+            const jantinaSelect = document.getElementById('t-jantina');
+            const detected = detectGenderFromName(name);
+            
+            // Hanya tukar secara auto jika jantina dapat dikesan
+            if (detected !== '-') {
+                jantinaSelect.value = detected;
+            }
+        };
+
         const normalizeSchoolName = (name) => {
             if (!name) return "";
             return name.toUpperCase().replace(/^(SA|S A|SRAB)\s+/g, '').replace(/\bKLG\b/g, 'KLUANG').replace(/\bBT\b/g, 'BATU').replace(/\bKG\b/g, 'KAMPUNG').replace(/\bAYER\b/g, 'AIR').replace(/\b1\b/g, '01').replace(/\b2\b/g, '02').replace(/\bHJ\b/g, 'HAJI').replace(/\bRENGAM\b/g, 'RENGGAM').replace(/[^A-Z0-9]/g, ''); 
@@ -1242,22 +1270,27 @@
                 let tid = 1;
                 teachers = rawTeachers.split('\n').map(l => l.trim()).filter(Boolean).map(line => {
                     let p = line.split('|');
+                    let namaGuru = p[0] ? p[0].trim() : "";
                     return { 
                         id: tid++, 
-                        nama: p[0] ? p[0].trim() : "", 
+                        nama: namaGuru, 
                         sekolah: p[1] ? p[1].trim() : "", 
                         gred: p[2] ? p[2].trim() : "", 
                         jawatan: p[3] ? p[3].trim() : "", 
                         ic: p[4] ? p[4].trim() : "-", 
                         email: p[5] ? p[5].trim() : "-", 
+                        jantina: detectGenderFromName(namaGuru),
                         status: 'Aktif' 
                     };
                 }).filter(t => !permanentlyRemovedTeachers.includes(t.nama));
             } else {
                 teachers = cachedTeachers;
-                // PATCH: Pastikan data guru dari cache lama dikemaskini dengan ID
+                // PATCH: Pastikan data guru dari cache lama dikemaskini dengan ID dan Jantina
                 let tSave = false;
-                teachers.forEach((t, i) => { if(!t.id) { t.id = Date.now() + 1000 + i; tSave = true; } });
+                teachers.forEach((t, i) => { 
+                    if(!t.id) { t.id = Date.now() + 1000 + i; tSave = true; } 
+                    if(!t.jantina) { t.jantina = detectGenderFromName(t.nama); tSave = true; }
+                });
                 if(tSave) localStorage.setItem('teacherDataDB', JSON.stringify(teachers));
             }
         };
@@ -1515,14 +1548,15 @@
                 thead.innerHTML = `<tr>
                     <th class="px-4 py-3 rounded-tl-xl w-10 text-center">${t('No')}</th>
                     <th class="px-4 py-3">${t('Nama Guru')}</th>
-                    <th class="px-4 py-3 hidden md:table-cell">${t('No Telefon')}</th>
+                    <th class="px-4 py-3 hidden md:table-cell">${t('Jantina')}</th>
+                    <th class="px-4 py-3 hidden lg:table-cell">${t('No Telefon')}</th>
                     <th class="px-4 py-3">${t('Sekolah')}</th>
                     <th class="px-4 py-3">${t('Jawatan')}</th>
                     <th class="px-4 py-3">${t('Status')}</th>
                     <th class="px-4 py-3 rounded-tr-xl text-center admin-only ${isAdmin ? '' : 'hidden'}">${t('Tindakan')}</th>
                 </tr>`;
                 
-                if(data.length === 0) tbody.innerHTML = `<tr><td colspan="7" class="px-4 py-8 text-center text-slate-500">${t('Tiada rekod.')}</td></tr>`;
+                if(data.length === 0) tbody.innerHTML = `<tr><td colspan="8" class="px-4 py-8 text-center text-slate-500">${t('Tiada rekod.')}</td></tr>`;
                 else {
                     tbody.innerHTML = data.map((t, i) => `
                         <tr class="hover:bg-slate-50 transition-colors group">
@@ -1530,7 +1564,8 @@
                             <td class="px-4 py-3 font-bold text-slate-700">${t.nama}
                                 <div class="text-[10px] text-slate-400 font-mono mt-0.5">${t.ic}</div>
                             </td>
-                            <td class="px-4 py-3 hidden md:table-cell text-slate-600 font-medium text-xs">${t.telefon || '-'}</td>
+                            <td class="px-4 py-3 hidden md:table-cell text-slate-600 font-medium text-xs">${t.jantina || '-'}</td>
+                            <td class="px-4 py-3 hidden lg:table-cell text-slate-600 font-medium text-xs">${t.telefon || '-'}</td>
                             <td class="px-4 py-3 text-slate-600 font-medium text-xs">${t.sekolah}</td>
                             <td class="px-4 py-3 text-slate-600 text-xs">${t.gred} - ${t.jawatan}</td>
                             <td class="px-4 py-3"><span class="px-2 py-0.5 rounded text-[10px] font-bold ${getStatusBadge(t.status)}">${t.status}</span></td>
@@ -2388,6 +2423,7 @@
             document.getElementById('mt-title').innerHTML = '<i data-lucide="user-plus" class="w-5 h-5"></i> Tambah Guru Baru';
             document.getElementById('t-id').value = '';
             document.getElementById('t-nama').value = '';
+            document.getElementById('t-jantina').value = '';
             document.getElementById('t-ic').value = '';
             document.getElementById('t-email').value = '';
             document.getElementById('t-gred').value = '';
@@ -2408,6 +2444,7 @@
                     document.getElementById('mt-title').innerHTML = '<i data-lucide="user-check" class="w-5 h-5"></i> Kemaskini Kakitangan';
                     document.getElementById('t-id').value = t.id;
                     document.getElementById('t-nama').value = t.nama || '';
+                    document.getElementById('t-jantina').value = t.jantina || '';
                     document.getElementById('t-ic').value = t.ic || '';
                     document.getElementById('t-email').value = t.email || '';
                     document.getElementById('t-gred').value = t.gred || '';
@@ -2440,6 +2477,7 @@
             const newT = {
                 id: id ? parseInt(id) : Date.now(),
                 nama: document.getElementById('t-nama').value.toUpperCase(),
+                jantina: document.getElementById('t-jantina').value,
                 sekolah: document.getElementById('t-sekolah').value,
                 gred: document.getElementById('t-gred').value.toUpperCase(),
                 jawatan: document.getElementById('t-jawatan').value.toUpperCase(),
