@@ -1845,6 +1845,7 @@
                                         <option value="status_az">Status Operasi (A-Z)</option>
                                         <option value="jantina_az">Jantina Guru Majoriti (Sekolah)</option>
                                         <option value="jantina_guru">Jantina Guru (Susunan Individu L/P)</option>
+                                        <option value="nama_guru_az">Nama Guru (A-Z)</option>
                                     </select>
                                  </div>
                              </div>
@@ -1940,6 +1941,9 @@
                 if (sortMode === 'status_az') {
                     return (a.statusOperasi || '').localeCompare(b.statusOperasi || '') || a.nama.localeCompare(b.nama);
                 }
+                if (sortMode === 'nama_guru_az') {
+                    return a.nama.localeCompare(b.nama);
+                }
                 if (sortMode === 'jantina_az' || sortMode === 'jantina_guru') {
                     // Kira majoriti jantina guru
                     const getMajoriti = (school) => {
@@ -2017,6 +2021,8 @@
                             let jB = b.teacher.jantina || 'Tiada';
                             return jA.localeCompare(jB) || a.teacher.nama.localeCompare(b.teacher.nama);
                         });
+                    } else if (sortMode === 'nama_guru_az') {
+                        rowsToRender.sort((a, b) => a.teacher.nama.localeCompare(b.teacher.nama));
                     }
                 } else {
                     rowsToRender = data.map(s => ({ school: s, teacher: null }));
