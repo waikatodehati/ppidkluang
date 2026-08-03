@@ -1343,7 +1343,7 @@
                 if (guruList.length === 0) return '-';
                 return `<ol class="list-decimal list-inside space-y-1">` + guruList.map(t => `<li class="pl-1">${t.nama}</li>`).join('') + `</ol>`;
             }},
-            senaraiGuruSahaja: { label: "Senarai Guru Sahaja", get: s => {
+            senaraiGuruSahaja: { label: "Senarai Nama Guru", get: s => {
                 const guruList = getReportTeachers(s.nama);
                 if (guruList.length === 0) return '-';
                 return `<ol class="list-decimal list-inside space-y-1">` + guruList.map(t => `<li class="pl-1">${t.nama}</li>`).join('') + `</ol>`;
