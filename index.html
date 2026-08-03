@@ -93,8 +93,8 @@
                         <img src="logo ppid kluang.ico" alt="Logo PPID Kluang" class="w-full h-full object-contain" onerror="this.src='https://placehold.co/100x100/0284c7/ffffff?text=PPID'">
                     </div>
                     <div class="block">
-                        <h1 class="font-extrabold text-white text-sm md:text-base leading-tight tracking-tight whitespace-nowrap">PPID KLUANG</h1>
-                        <p class="text-[10px] md:text-xs text-sky-200 uppercase font-semibold mt-0.5 whitespace-nowrap tracking-wide">Sistem Maklumat Bersepadu</p>
+                        <h1 class="font-extrabold text-white text-sm md:text-base leading-tight tracking-tight whitespace-nowrap" data-i18n="PPID KLUANG">PPID KLUANG</h1>
+                        <p class="text-[10px] md:text-xs text-sky-200 uppercase font-semibold mt-0.5 whitespace-nowrap tracking-wide" data-i18n="Sistem Maklumat Bersepadu">Sistem Maklumat Bersepadu</p>
                     </div>
                 </div>
             </div>
@@ -102,19 +102,19 @@
             <div id="main-nav-menu" class="hidden flex-row items-center w-full lg:w-auto gap-2 overflow-x-auto pb-2 lg:pb-0 scrollbar-hide">
                 <button id="nav-profail" onclick="switchTab('profail')" class="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl transition-all text-sky-100 hover:bg-sky-800 hover:text-white font-medium group relative shrink-0">
                     <i data-lucide="layout-grid" class="w-5 h-5 shrink-0 transition-transform group-hover:scale-110"></i>
-                    <span class="block text-sm font-bold whitespace-nowrap">PROFIL SEKOLAH</span>
+                    <span class="block text-sm font-bold whitespace-nowrap" data-i18n="PROFIL SEKOLAH">PROFIL SEKOLAH</span>
                 </button>
                 <button id="nav-sekolah" onclick="switchTab('sekolah')" class="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl transition-all text-sky-100 hover:bg-sky-800 hover:text-white font-medium group relative shrink-0">
                     <i data-lucide="building-2" class="w-5 h-5 shrink-0 transition-transform group-hover:scale-110"></i>
-                    <span class="block text-sm font-bold whitespace-nowrap">SENARAI SEKOLAH</span>
+                    <span class="block text-sm font-bold whitespace-nowrap" data-i18n="SENARAI SEKOLAH">SENARAI SEKOLAH</span>
                 </button>
                 <button id="nav-guru" onclick="switchTab('guru')" class="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl transition-all text-sky-100 hover:bg-sky-800 hover:text-white font-medium group relative shrink-0">
                     <i data-lucide="users" class="w-5 h-5 shrink-0 transition-transform group-hover:scale-110"></i>
-                    <span class="block text-sm font-bold whitespace-nowrap">SENARAI GURU</span>
+                    <span class="block text-sm font-bold whitespace-nowrap" data-i18n="SENARAI GURU">SENARAI GURU</span>
                 </button>
                 <button id="nav-laporan" onclick="switchTab('laporan')" class="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl transition-all text-sky-100 hover:bg-sky-800 hover:text-white font-medium group relative shrink-0">
                     <i data-lucide="pie-chart" class="w-5 h-5 shrink-0 transition-transform group-hover:scale-110"></i>
-                    <span class="block text-sm font-bold whitespace-nowrap">LAPORAN & ANALISIS</span>
+                    <span class="block text-sm font-bold whitespace-nowrap" data-i18n="LAPORAN & ANALISIS">LAPORAN & ANALISIS</span>
                 </button>
                 
                 <div class="hidden lg:block w-px h-6 bg-sky-700 mx-2"></div>
@@ -176,10 +176,10 @@
                         <option value="PPID">Pejabat Pendidikan Islam Daerah (PPID)</option>
                     </select>
                     <button id="btn-add-school" onclick="openSchoolForm()" class="hidden items-center justify-center gap-2 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white px-4 py-2.5 rounded-xl font-medium text-sm transition-all shadow-md whitespace-nowrap">
-                        <i data-lucide="plus" class="w-4 h-4"></i> Tambah Sekolah
+                        <i data-lucide="plus" class="w-4 h-4"></i> <span data-i18n="Tambah Sekolah">Tambah Sekolah</span>
                     </button>
                     <button id="btn-add-teacher" onclick="openTeacherForm()" class="hidden items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-4 py-2.5 rounded-xl font-medium text-sm transition-all shadow-md whitespace-nowrap">
-                        <i data-lucide="user-plus" class="w-4 h-4"></i> Tambah Guru
+                        <i data-lucide="user-plus" class="w-4 h-4"></i> <span data-i18n="Tambah Guru">Tambah Guru</span>
                     </button>
                 </div>
             </section>
@@ -528,10 +528,12 @@
         // --- SISTEM BAHASA (I18N) ---
         let currentLang = 'BM';
         const translations = {
+            'PPID KLUANG': 'PPID كلوانج',
+            'Sistem Maklumat Bersepadu': 'نظام المعلومات المتكامل',
             'PROFIL SEKOLAH': 'ملف المدرسة',
             'SENARAI SEKOLAH': 'قائمة المدارس',
             'SENARAI GURU': 'قائمة المعلمين',
-            'LAPORAN & ANALISIS': 'التقارير والتحليل',
+            'LAPORAN & ANALISIS': 'التقارير والتحليلات',
             'AKSES ADMIN': 'وصول المسؤول',
             'LOG KELUAR': 'تسجيل خروج',
             'PENGURUSAN SISTEM MAKLUMAT PPID KLUANG': 'إدارة نظام معلومات مكتب التعليم الإسلامي كلوانج',
