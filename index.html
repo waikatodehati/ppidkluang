@@ -121,7 +121,12 @@
                 
                 <button id="btn-admin-toggle" onclick="toggleAdmin()" class="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-medium text-sm transition-all bg-sky-950 text-sky-100 hover:bg-sky-900 border border-sky-700 group relative shrink-0" title="Akses Sistem & Pengurusan">
                     <i data-lucide="shield" class="w-5 h-5 shrink-0"></i>
-                    <span id="nav-auth-text" class="block text-sm font-bold whitespace-nowrap">AKSES ADMIN</span>
+                    <span id="nav-auth-text" class="block text-sm font-bold whitespace-nowrap" data-i18n="AKSES ADMIN">AKSES ADMIN</span>
+                </button>
+                
+                <button id="btn-lang-toggle" onclick="toggleLanguage()" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl transition-all text-emerald-300 hover:bg-emerald-800 hover:text-white font-bold text-sm border border-emerald-700/50 group shrink-0 ml-1" title="Tukar Bahasa / Change Language">
+                    <i data-lucide="globe" class="w-4 h-4 shrink-0 transition-transform group-hover:scale-110"></i>
+                    <span id="lang-text">عربي (AR)</span>
                 </button>
             </div>
         </nav>
@@ -134,19 +139,19 @@
                     <i data-lucide="mosque" class="w-64 h-64"></i>
                 </div>
                 <div class="relative z-10">
-                    <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800 tracking-tight uppercase">PENGURUSAN SISTEM MAKLUMAT PPID KLUANG</h2>
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800 tracking-tight uppercase" data-i18n="PENGURUSAN SISTEM MAKLUMAT PPID KLUANG">PENGURUSAN SISTEM MAKLUMAT PPID KLUANG</h2>
                     <p class="text-sm md:text-base text-slate-500 mt-1.5 font-medium flex items-center gap-2">
-                        <i data-lucide="database" class="w-4 h-4"></i> Pangkalan Data Bersepadu Pelajar & Guru
+                        <i data-lucide="database" class="w-4 h-4"></i> <span data-i18n="Pangkalan Data Bersepadu Pelajar & Guru">Pangkalan Data Bersepadu Pelajar & Guru</span>
                     </p>
                 </div>
                 <div class="flex items-center gap-3 w-full sm:w-auto relative z-10">
                     <div class="flex-1 bg-teal-50/80 backdrop-blur px-5 py-3 rounded-xl border border-teal-100 text-center shadow-sm">
                         <div id="stat-total-schools" class="text-2xl font-bold text-teal-700">0</div>
-                        <div class="text-[10px] text-teal-600 font-bold uppercase tracking-wider mt-0.5">Sekolah Aktif</div>
+                        <div class="text-[10px] text-teal-600 font-bold uppercase tracking-wider mt-0.5" data-i18n="Sekolah Aktif">Sekolah Aktif</div>
                     </div>
                     <div class="flex-1 bg-blue-50/80 backdrop-blur px-5 py-3 rounded-xl border border-blue-100 text-center shadow-sm">
                         <div id="stat-total-teachers" class="text-2xl font-bold text-blue-700">0</div>
-                        <div class="text-[10px] text-blue-600 font-bold uppercase tracking-wider mt-0.5">Guru Aktif</div>
+                        <div class="text-[10px] text-blue-600 font-bold uppercase tracking-wider mt-0.5" data-i18n="Guru Aktif">Guru Aktif</div>
                     </div>
                 </div>
             </header>
@@ -154,22 +159,17 @@
             <section id="search-filter-section" class="bg-white rounded-2xl shadow-sm p-4 border border-slate-100 flex flex-col md:flex-row gap-4 transition-all z-20 relative">
                 <div class="flex-1 relative">
                     <i data-lucide="search" class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5"></i>
-                    <input type="text" id="search-input" oninput="handleFilterChange()" placeholder="Cari rekod nama, pendaftaran, ic..." class="w-full pl-11 pr-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 bg-slate-50 transition-all text-sm" />
+                    <input type="text" id="search-input" oninput="handleFilterChange()" data-i18n="Cari rekod nama, pendaftaran, ic..." placeholder="Cari rekod nama, pendaftaran, ic..." class="w-full pl-11 pr-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 bg-slate-50 transition-all text-sm" />
                 </div>
                 <div class="flex flex-wrap md:flex-nowrap gap-3">
                     <select id="filter-zon" onchange="handleFilterChange()" class="flex-1 md:flex-none px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium">
-                        <option value="Semua">Semua Zon</option>
-                        <option value="1">Zon 1</option>
-                        <option value="2">Zon 2</option>
-                        <option value="3">Zon 3</option>
+                        <option value="Semua" data-i18n="Semua Zon">Semua Zon</option>
+                        <option value="1" data-i18n="Zon 1">Zon 1</option>
+                        <option value="2" data-i18n="Zon 2">Zon 2</option>
+                        <option value="3" data-i18n="Zon 3">Zon 3</option>
                     </select>
                     <select id="filter-gred" onchange="handleFilterChange()" class="flex-1 md:flex-none px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium">
-                        <option value="Semua">Semua Kategori/Gred</option>
-                        <option value="A">SAKNJ Gred A</option>
-                        <option value="B">SAKNJ Gred B</option>
-                        <option value="C">SAKNJ Gred C</option>
-                        <option value="TAHFIZ">Tahfiz</option>
-                        <option value="SRAS">Rendah Swasta (SRAS)</option>
+                        <option value="Semua" data-i18n="Semua Kategori/Gred">Semua Kategori/Gred</option>
                         <option value="SMAS">Menengah Swasta (SMAS)</option>
                         <option value="PONDOK">Pondok / MMJ</option>
                         <option value="TAJ">Tadika Agama Johor (TAJ)</option>
@@ -524,6 +524,68 @@
         let filterGred = 'Semua';
         let selectedSchool = null;
         let currentSortMode = 'kategori_az';
+
+        // --- SISTEM BAHASA (I18N) ---
+        let currentLang = 'BM';
+        const translations = {
+            'PROFIL SEKOLAH': 'ملف المدرسة',
+            'SENARAI SEKOLAH': 'قائمة المدارس',
+            'SENARAI GURU': 'قائمة المعلمين',
+            'LAPORAN & ANALISIS': 'التقارير والتحليل',
+            'AKSES ADMIN': 'وصول المسؤول',
+            'LOG KELUAR': 'تسجيل خروج',
+            'PENGURUSAN SISTEM MAKLUMAT PPID KLUANG': 'إدارة نظام معلومات مكتب التعليم الإسلامي كلوانج',
+            'Pangkalan Data Bersepadu Pelajar & Guru': 'قاعدة بيانات متكاملة للطلاب والمعلمين',
+            'Sekolah Aktif': 'مدارس نشطة',
+            'Guru Aktif': 'معلمون نشطون',
+            'Cari rekod nama, pendaftaran, ic...': 'البحث في السجلات...',
+            'Semua Zon': 'جميع المناطق',
+            'Semua Kategori/Gred': 'جميع الفئات',
+            'Tambah Sekolah': 'إضافة مدرسة',
+            'Tambah Guru': 'إضافة معلم',
+            'No': 'رقم',
+            'Nama Sekolah': 'اسم المدرسة',
+            'Pendaftaran': 'التسجيل',
+            'Gred': 'الدرجة',
+            'Zon': 'المنطقة',
+            'Tindakan': 'إجراءات',
+            'Nama Guru': 'اسم المعلم',
+            'Sekolah': 'المدرسة',
+            'Jawatan': 'المنصب',
+            'Status': 'الحالة',
+            'No Telefon': 'رقم الهاتف',
+            'Tiada rekod.': 'لا يوجد سجل.',
+            'Zon 1': 'المنطقة 1',
+            'Zon 2': 'المنطقة 2',
+            'Zon 3': 'المنطقة 3'
+        };
+
+        const t = (text) => {
+            if (currentLang === 'BM') return text;
+            return translations[text] || text;
+        };
+
+        const toggleLanguage = () => {
+            currentLang = currentLang === 'BM' ? 'AR' : 'BM';
+            document.getElementById('lang-text').innerText = currentLang === 'BM' ? 'عربي (AR)' : 'BM';
+            
+            // Kemaskini elemen statik yang ada tag data-i18n
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (el.tagName === 'INPUT' && (el.type === 'text' || el.type === 'search')) {
+                    el.placeholder = t(key);
+                } else if (el.tagName === 'OPTION') {
+                    el.text = t(key);
+                } else {
+                    el.innerText = t(key);
+                }
+            });
+
+            // Re-render paparan jadual supaya tajuk kolum (thead) bertukar bahasa
+            if (activeTab === 'sekolah' || activeTab === 'guru') renderTable();
+            applyAdminState();
+        };
+        // -----------------------------
 
         // Helpers
         const normalizeSchoolName = (name) => {
@@ -1419,15 +1481,15 @@
             if (activeTab === 'sekolah') {
                 const data = getFilteredSchools();
                 thead.innerHTML = `<tr>
-                    <th class="px-4 py-3 rounded-tl-xl w-10 text-center">No</th>
-                    <th class="px-4 py-3">Nama Sekolah</th>
-                    <th class="px-4 py-3">Pendaftaran</th>
-                    <th class="px-4 py-3">Gred</th>
-                    <th class="px-4 py-3">Zon</th>
-                    <th class="px-4 py-3 rounded-tr-xl text-center">Tindakan</th>
+                    <th class="px-4 py-3 rounded-tl-xl w-10 text-center">${t('No')}</th>
+                    <th class="px-4 py-3">${t('Nama Sekolah')}</th>
+                    <th class="px-4 py-3">${t('Pendaftaran')}</th>
+                    <th class="px-4 py-3">${t('Gred')}</th>
+                    <th class="px-4 py-3">${t('Zon')}</th>
+                    <th class="px-4 py-3 rounded-tr-xl text-center">${t('Tindakan')}</th>
                 </tr>`;
                 
-                if(data.length === 0) tbody.innerHTML = `<tr><td colspan="6" class="px-4 py-8 text-center text-slate-500">Tiada rekod.</td></tr>`;
+                if(data.length === 0) tbody.innerHTML = `<tr><td colspan="6" class="px-4 py-8 text-center text-slate-500">${t('Tiada rekod.')}</td></tr>`;
                 else {
                     tbody.innerHTML = data.map((s, i) => `
                         <tr class="hover:bg-slate-50 transition-colors group">
@@ -1435,7 +1497,7 @@
                             <td class="px-4 py-3 font-bold text-slate-700"><a href="#" onclick="event.preventDefault(); openSchoolDetails(${s.id})" class="hover:text-sky-600 hover:underline">${s.nama}</a></td>
                             <td class="px-4 py-3 font-mono text-xs text-slate-500">${s.noDaftar || '-'}</td>
                             <td class="px-4 py-3"><span class="px-2 py-0.5 rounded text-[10px] font-bold ${getBadgeClass(s.gred)}">${s.gred}</span></td>
-                            <td class="px-4 py-3 text-slate-600">Zon ${s.zon}</td>
+                            <td class="px-4 py-3 text-slate-600">${t('Zon')} ${s.zon}</td>
                             <td class="px-4 py-3 text-center">
                                 <button onclick="openSchoolDetails(${s.id})" class="p-1.5 text-sky-600 hover:bg-sky-50 rounded-lg transition-colors inline-block" title="Lihat"><i data-lucide="eye" class="w-4 h-4"></i></button>
                             </td>
@@ -1445,22 +1507,24 @@
             } else if (activeTab === 'guru') {
                 const data = getFilteredTeachers();
                 thead.innerHTML = `<tr>
-                    <th class="px-4 py-3 rounded-tl-xl w-10 text-center">No</th>
-                    <th class="px-4 py-3">Nama Guru</th>
-                    <th class="px-4 py-3">Sekolah</th>
-                    <th class="px-4 py-3">Jawatan</th>
-                    <th class="px-4 py-3">Status</th>
-                    <th class="px-4 py-3 rounded-tr-xl text-center admin-only ${isAdmin ? '' : 'hidden'}">Tindakan</th>
+                    <th class="px-4 py-3 rounded-tl-xl w-10 text-center">${t('No')}</th>
+                    <th class="px-4 py-3">${t('Nama Guru')}</th>
+                    <th class="px-4 py-3 hidden md:table-cell">${t('No Telefon')}</th>
+                    <th class="px-4 py-3">${t('Sekolah')}</th>
+                    <th class="px-4 py-3">${t('Jawatan')}</th>
+                    <th class="px-4 py-3">${t('Status')}</th>
+                    <th class="px-4 py-3 rounded-tr-xl text-center admin-only ${isAdmin ? '' : 'hidden'}">${t('Tindakan')}</th>
                 </tr>`;
                 
-                if(data.length === 0) tbody.innerHTML = `<tr><td colspan="6" class="px-4 py-8 text-center text-slate-500">Tiada rekod.</td></tr>`;
+                if(data.length === 0) tbody.innerHTML = `<tr><td colspan="7" class="px-4 py-8 text-center text-slate-500">${t('Tiada rekod.')}</td></tr>`;
                 else {
                     tbody.innerHTML = data.map((t, i) => `
-                        <tr class="hover:bg-slate-50 transition-colors">
+                        <tr class="hover:bg-slate-50 transition-colors group">
                             <td class="px-4 py-3 text-center text-slate-400">${i+1}</td>
                             <td class="px-4 py-3 font-bold text-slate-700">${t.nama}
                                 <div class="text-[10px] text-slate-400 font-mono mt-0.5">${t.ic}</div>
                             </td>
+                            <td class="px-4 py-3 hidden md:table-cell text-slate-600 font-medium text-xs">${t.telefon || '-'}</td>
                             <td class="px-4 py-3 text-slate-600 font-medium text-xs">${t.sekolah}</td>
                             <td class="px-4 py-3 text-slate-600 text-xs">${t.gred} - ${t.jawatan}</td>
                             <td class="px-4 py-3"><span class="px-2 py-0.5 rounded text-[10px] font-bold ${getStatusBadge(t.status)}">${t.status}</span></td>
@@ -1950,7 +2014,7 @@
             if (isAdmin) {
                 if (topNavBar) topNavBar.classList.remove('hidden');
                 
-                btnToggle.innerHTML = '<i data-lucide="shield-off" class="w-5 h-5 shrink-0"></i><span id="nav-auth-text" class="block text-sm font-bold whitespace-nowrap">LOG KELUAR</span>';
+                btnToggle.innerHTML = `<i data-lucide="shield-off" class="w-5 h-5 shrink-0"></i><span id="nav-auth-text" class="block text-sm font-bold whitespace-nowrap" data-i18n="LOG KELUAR">${t('LOG KELUAR')}</span>`;
                 btnToggle.classList.replace('bg-sky-950', 'bg-red-700');
                 btnToggle.classList.replace('hover:bg-sky-900', 'hover:bg-red-800');
                 btnToggle.classList.replace('border-sky-700', 'border-red-600');
@@ -1966,7 +2030,7 @@
             } else {
                 if (topNavBar) topNavBar.classList.add('hidden');
                 
-                btnToggle.innerHTML = '<i data-lucide="shield" class="w-5 h-5 shrink-0"></i><span id="nav-auth-text" class="block text-sm font-bold whitespace-nowrap">AKSES ADMIN</span>';
+                btnToggle.innerHTML = `<i data-lucide="shield" class="w-5 h-5 shrink-0"></i><span id="nav-auth-text" class="block text-sm font-bold whitespace-nowrap" data-i18n="AKSES ADMIN">${t('AKSES ADMIN')}</span>`;
                 btnToggle.classList.replace('bg-red-700', 'bg-sky-950');
                 btnToggle.classList.replace('hover:bg-red-800', 'hover:bg-sky-900');
                 btnToggle.classList.replace('border-red-600', 'border-sky-700');
