@@ -170,10 +170,10 @@
                     </select>
                     <select id="filter-gred" onchange="handleFilterChange()" class="flex-1 md:flex-none px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium">
                         <option value="Semua" data-i18n="Semua Kategori/Gred">Semua Kategori/Gred</option>
-                        <option value="SMAS">Menengah Swasta (SMAS)</option>
-                        <option value="PONDOK">Pondok / MMJ</option>
-                        <option value="TAJ">Tadika Agama Johor (TAJ)</option>
-                        <option value="PPID">Pejabat Pendidikan Islam Daerah (PPID)</option>
+                        <option value="SMAS" data-i18n="Menengah Swasta (SMAS)">Menengah Swasta (SMAS)</option>
+                        <option value="PONDOK" data-i18n="Pondok / MMJ">Pondok / MMJ</option>
+                        <option value="TAJ" data-i18n="Tadika Agama Johor (TAJ)">Tadika Agama Johor (TAJ)</option>
+                        <option value="PPID" data-i18n="Pejabat Pendidikan Islam Daerah (PPID)">Pejabat Pendidikan Islam Daerah (PPID)</option>
                     </select>
                     <button id="btn-add-school" onclick="openSchoolForm()" class="hidden items-center justify-center gap-2 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white px-4 py-2.5 rounded-xl font-medium text-sm transition-all shadow-md whitespace-nowrap">
                         <i data-lucide="plus" class="w-4 h-4"></i> <span data-i18n="Tambah Sekolah">Tambah Sekolah</span>
@@ -559,7 +559,11 @@
             'Tiada rekod.': 'لا يوجد سجل.',
             'Zon 1': 'المنطقة 1',
             'Zon 2': 'المنطقة 2',
-            'Zon 3': 'المنطقة 3'
+            'Zon 3': 'المنطقة 3',
+            'Menengah Swasta (SMAS)': 'المدارس الثانوية الخاصة (SMAS)',
+            'Pondok / MMJ': 'المدارس الدينية (بوندوك) / MMJ',
+            'Tadika Agama Johor (TAJ)': 'رياض الأطفال الدينية بجوهر (TAJ)',
+            'Pejabat Pendidikan Islam Daerah (PPID)': 'مكتب التعليم الإسلامي للمنطقة (PPID)'
         };
 
         const t = (text) => {
