@@ -1439,6 +1439,11 @@
                 if (guruList.length === 0) return '-';
                 return `<ol class="list-decimal list-inside space-y-1">` + guruList.map(t => `<li class="pl-1">${t.jawatan && t.jawatan !== '-' ? t.jawatan : '<span class="text-slate-400 italic">Tiada Rekod</span>'}</li>`).join('') + `</ol>`;
             }},
+            senaraiGredGuru: { label: "Gred Guru", get: s => {
+                const guruList = getReportTeachers(s.nama);
+                if (guruList.length === 0) return '-';
+                return `<ol class="list-decimal list-inside space-y-1">` + guruList.map(t => `<li class="pl-1">${t.gred && t.gred !== '-' ? t.gred : '<span class="text-slate-400 italic">Tiada Rekod</span>'}</li>`).join('') + `</ol>`;
+            }},
             jantinaGuru: { label: "Jantina Guru", get: s => {
                 const guruList = getReportTeachers(s.nama);
                 if (guruList.length === 0) return '-';
@@ -2133,6 +2138,7 @@
                             else if (flattenTeacherList && k === 'senaraiIC') val = t.ic && t.ic !== '-' ? t.ic : '<span class="text-slate-400 italic">Tiada Rekod</span>';
                             else if (flattenTeacherList && k === 'senaraiTelefon') val = t.telefon && t.telefon !== '-' ? t.telefon : '<span class="text-slate-400 italic">Tiada Rekod</span>';
                             else if (flattenTeacherList && k === 'senaraiJawatan') val = t.jawatan && t.jawatan !== '-' ? t.jawatan : '<span class="text-slate-400 italic">Tiada Rekod</span>';
+                            else if (flattenTeacherList && k === 'senaraiGredGuru') val = t.gred && t.gred !== '-' ? t.gred : '<span class="text-slate-400 italic">Tiada Rekod</span>';
                             else if (flattenTeacherList && k === 'jantinaGuru') val = t.jantina && t.jantina !== 'Tiada' ? t.jantina : '<span class="text-slate-400 italic">Tiada Rekod</span>';
                             else {
                                 val = reportColumnsAvailable[k].get(s);
