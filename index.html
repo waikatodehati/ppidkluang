@@ -150,9 +150,9 @@
                     <i data-lucide="mosque" class="w-64 h-64"></i>
                 </div>
                 <div class="relative z-10">
-                    <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800 tracking-tight uppercase">PENGURUSAN SISTEM MAKLUMAT PPID KLUANG</h2>
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800 tracking-tight uppercase lang-text" data-ms="PENGURUSAN SISTEM MAKLUMAT PPID KLUANG" data-ar="إدارة نظام معلومات PPID كلوانج">PENGURUSAN SISTEM MAKLUMAT PPID KLUANG</h2>
                     <p class="text-sm md:text-base text-slate-500 mt-1.5 font-medium flex items-center gap-2">
-                        <i data-lucide="database" class="w-4 h-4"></i> Pangkalan Data Bersepadu Pelajar & Guru
+                        <i data-lucide="database" class="w-4 h-4"></i> <span class="lang-text" data-ms="Pangkalan Data Bersepadu Pelajar & Guru" data-ar="قاعدة البيانات المتكاملة للطلاب والمعلمين">Pangkalan Data Bersepadu Pelajar & Guru</span>
                     </p>
                 </div>
                 <div class="flex items-center gap-3 w-full sm:w-auto relative z-10">
@@ -319,9 +319,15 @@
                         <input required type="text" id="t-ic" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all bg-white shadow-sm font-mono" placeholder="Contoh: 880101-01-1234" />
                     </div>
                 </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-600 mb-1.5 uppercase tracking-wide">Alamat E-mel (Rasmi)</label>
-                    <input type="email" id="t-email" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-slate-900 lowercase focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all bg-white shadow-sm" placeholder="guru@moe-dl.edu.my" />
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 mb-1.5 uppercase tracking-wide">Alamat E-mel (Rasmi)</label>
+                        <input type="email" id="t-email" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-slate-900 lowercase focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all bg-white shadow-sm" placeholder="guru@moe-dl.edu.my" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 mb-1.5 uppercase tracking-wide">No. Telefon</label>
+                        <input type="text" id="t-telefon" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all bg-white shadow-sm font-mono" placeholder="01X-XXXXXXX" />
+                    </div>
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
@@ -361,6 +367,9 @@
                             <option value="GURU PENOLONG">GURU PENOLONG</option>
                             <option value="GURU BESAR">GURU BESAR</option>
                             <option value="PENGETUA / MUDIR">PENGETUA / MUDIR</option>
+                            <option value="GPK AKADEMIK">GPK AKADEMIK</option>
+                            <option value="GPK HEM">GPK HEM</option>
+                            <option value="GPK KOKO">GPK KOKO</option>
                             <option value="PENOLONG PEGAWAI UNIT AKADEMIK">PENOLONG PEGAWAI UNIT AKADEMIK</option>
                             <option value="PENOLONG PEGAWAI UNIT PENGURUSAN">PENOLONG PEGAWAI UNIT PENGURUSAN</option>
                             <option value="PENYELIA SEKSYEN PENGURUSAN SEKOLAH">PENYELIA SEKSYEN PENGURUSAN SEKOLAH</option>
@@ -1299,6 +1308,7 @@
                         jawatan: p[3] ? p[3].trim() : "", 
                         ic: p[4] ? p[4].trim() : "-", 
                         email: p[5] ? p[5].trim() : "-", 
+                        telefon: p[6] ? p[6].trim() : "-",
                         status: 'Aktif',
                         jantina: jantina
                     };
@@ -1309,6 +1319,7 @@
                 let tSave = false;
                 teachers.forEach((t, i) => { 
                     if(!t.id) { t.id = Date.now() + 1000 + i; tSave = true; } 
+                    if(t.telefon === undefined) { t.telefon = "-"; tSave = true; }
                     if(!t.jantina) {
                         t.jantina = "Tiada";
                         if (t.nama.includes(' BINTI ') || t.nama.includes(' BT ') || t.nama.includes(' BTE ')) t.jantina = "Perempuan";
@@ -1417,6 +1428,11 @@
                 const guruList = getReportTeachers(s.nama);
                 if (guruList.length === 0) return '-';
                 return `<ol class="list-decimal list-inside space-y-1">` + guruList.map(t => `<li class="pl-1">${t.ic && t.ic !== '-' ? t.ic : '<span class="text-slate-400 italic">Tiada Rekod</span>'}</li>`).join('') + `</ol>`;
+            }},
+            senaraiTelefon: { label: "Senarai No Telefon", get: s => {
+                const guruList = getReportTeachers(s.nama);
+                if (guruList.length === 0) return '-';
+                return `<ol class="list-decimal list-inside space-y-1">` + guruList.map(t => `<li class="pl-1">${t.telefon && t.telefon !== '-' ? t.telefon : '<span class="text-slate-400 italic">Tiada Rekod</span>'}</li>`).join('') + `</ol>`;
             }},
             senaraiJawatan: { label: "Senarai Jawatan Guru", get: s => {
                 const guruList = getReportTeachers(s.nama);
@@ -1606,13 +1622,14 @@
                     <th class="px-4 py-3 rounded-tl-xl w-10 text-center">No</th>
                     <th class="px-4 py-3">Nama Guru</th>
                     <th class="px-4 py-3">Jantina</th>
+                    <th class="px-4 py-3">No Telefon</th>
                     <th class="px-4 py-3">Sekolah</th>
                     <th class="px-4 py-3">Jawatan</th>
                     <th class="px-4 py-3">Status</th>
                     <th class="px-4 py-3 rounded-tr-xl text-center admin-only ${isAdmin ? '' : 'hidden'}">Tindakan</th>
                 </tr>`;
                 
-                if(data.length === 0) tbody.innerHTML = `<tr><td colspan="7" class="px-4 py-8 text-center text-slate-500">Tiada rekod.</td></tr>`;
+                if(data.length === 0) tbody.innerHTML = `<tr><td colspan="8" class="px-4 py-8 text-center text-slate-500">Tiada rekod.</td></tr>`;
                 else {
                     tbody.innerHTML = data.map((t, i) => `
                         <tr class="hover:bg-slate-50 transition-colors">
@@ -1621,6 +1638,7 @@
                                 <div class="text-[10px] text-slate-400 font-mono mt-0.5">${t.ic}</div>
                             </td>
                             <td class="px-4 py-3 text-slate-600 text-xs">${t.jantina || '-'}</td>
+                            <td class="px-4 py-3 text-slate-600 font-medium text-xs">${t.telefon || '-'}</td>
                             <td class="px-4 py-3 text-slate-600 font-medium text-xs">${t.sekolah}</td>
                             <td class="px-4 py-3 text-slate-600 text-xs">${t.gred} - ${t.jawatan}</td>
                             <td class="px-4 py-3"><span class="px-2 py-0.5 rounded text-[10px] font-bold ${getStatusBadge(t.status)}">${t.status}</span></td>
@@ -2113,6 +2131,7 @@
                             if (flattenTeacherList && k === 'senaraiGuruSahaja') val = t.nama;
                             else if (flattenTeacherList && k === 'senaraiEmel') val = t.email && t.email !== '-' ? t.email : '<span class="text-slate-400 italic">Tiada Rekod</span>';
                             else if (flattenTeacherList && k === 'senaraiIC') val = t.ic && t.ic !== '-' ? t.ic : '<span class="text-slate-400 italic">Tiada Rekod</span>';
+                            else if (flattenTeacherList && k === 'senaraiTelefon') val = t.telefon && t.telefon !== '-' ? t.telefon : '<span class="text-slate-400 italic">Tiada Rekod</span>';
                             else if (flattenTeacherList && k === 'senaraiJawatan') val = t.jawatan && t.jawatan !== '-' ? t.jawatan : '<span class="text-slate-400 italic">Tiada Rekod</span>';
                             else if (flattenTeacherList && k === 'jantinaGuru') val = t.jantina && t.jantina !== 'Tiada' ? t.jantina : '<span class="text-slate-400 italic">Tiada Rekod</span>';
                             else {
@@ -2581,6 +2600,7 @@
             document.getElementById('t-jantina').value = '';
             document.getElementById('t-ic').value = '';
             document.getElementById('t-email').value = '';
+            document.getElementById('t-telefon').value = '';
             document.getElementById('t-gred').value = '';
             document.getElementById('t-jawatan').value = '';
             document.getElementById('t-status').value = 'Aktif';
@@ -2602,6 +2622,7 @@
                     document.getElementById('t-jantina').value = t.jantina || '';
                     document.getElementById('t-ic').value = t.ic || '';
                     document.getElementById('t-email').value = t.email || '';
+                    document.getElementById('t-telefon').value = t.telefon || '';
                     document.getElementById('t-gred').value = t.gred || '';
                     document.getElementById('t-jawatan').value = t.jawatan || '';
                     
@@ -2638,6 +2659,7 @@
                 jawatan: document.getElementById('t-jawatan').value.toUpperCase(),
                 ic: document.getElementById('t-ic').value,
                 email: document.getElementById('t-email').value.toLowerCase(),
+                telefon: document.getElementById('t-telefon').value,
                 status: document.getElementById('t-status').value
             };
 
