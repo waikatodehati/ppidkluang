@@ -2619,7 +2619,15 @@
                     document.getElementById('mt-title').innerHTML = '<i data-lucide="user-check" class="w-5 h-5"></i> Kemaskini Kakitangan';
                     document.getElementById('t-id').value = t.id;
                     document.getElementById('t-nama').value = t.nama || '';
-                    document.getElementById('t-jantina').value = t.jantina || '';
+                    
+                    // PADANAN JANTINA JIKA TIADA REKOD:
+                    let determinedGender = t.jantina;
+                    if (!determinedGender || determinedGender === 'Tiada' || determinedGender === '') {
+                        if (t.nama.includes(' BINTI ') || t.nama.includes(' BT ') || t.nama.includes(' BTE ')) determinedGender = "Perempuan";
+                        else if (t.nama.includes(' BIN ')) determinedGender = "Lelaki";
+                    }
+                    document.getElementById('t-jantina').value = determinedGender || '';
+                    
                     document.getElementById('t-ic').value = t.ic || '';
                     document.getElementById('t-email').value = t.email || '';
                     document.getElementById('t-telefon').value = t.telefon || '';
