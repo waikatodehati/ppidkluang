@@ -174,22 +174,22 @@
                 </div>
                 <div class="flex flex-wrap md:flex-nowrap gap-3">
                     <select id="filter-zon" onchange="handleFilterChange()" class="flex-1 md:flex-none px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium">
-                        <option value="Semua">Semua Zon</option>
+                        <option value="Semua" class="lang-text" data-ms="Semua Zon" data-ar="جميع المناطق">Semua Zon</option>
                         <option value="1">Zon 1</option>
                         <option value="2">Zon 2</option>
                         <option value="3">Zon 3</option>
                     </select>
                     <select id="filter-gred" onchange="handleFilterChange()" class="flex-1 md:flex-none px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-teal-500/50 text-sm font-medium">
-                        <option value="Semua">Semua Kategori/Gred</option>
-                        <option value="A">SAKNJ Gred A</option>
-                        <option value="B">SAKNJ Gred B</option>
-                        <option value="C">SAKNJ Gred C</option>
-                        <option value="TAHFIZ">Tahfiz</option>
-                        <option value="SRAS">Rendah Swasta (SRAS)</option>
-                        <option value="SMAS">Menengah Swasta (SMAS)</option>
-                        <option value="PONDOK">Pondok / MMJ</option>
-                        <option value="TAJ">Tadika Agama Johor (TAJ)</option>
-                        <option value="PPID">Pejabat Pendidikan Islam Daerah (PPID)</option>
+                        <option value="Semua" class="lang-text" data-ms="Semua Kategori/Gred" data-ar="جميع الفئات / الدرجات">Semua Kategori/Gred</option>
+                        <option value="A" class="lang-text" data-ms="SAKNJ Gred A" data-ar="SAKNJ درجة أ">SAKNJ Gred A</option>
+                        <option value="B" class="lang-text" data-ms="SAKNJ Gred B" data-ar="SAKNJ درجة ب">SAKNJ Gred B</option>
+                        <option value="C" class="lang-text" data-ms="SAKNJ Gred C" data-ar="SAKNJ درجة ج">SAKNJ Gred C</option>
+                        <option value="TAHFIZ" class="lang-text" data-ms="Tahfiz" data-ar="تحفيظ">Tahfiz</option>
+                        <option value="SRAS" class="lang-text" data-ms="Rendah Swasta (SRAS)" data-ar="مدرسة ابتدائية خاصة (SRAS)">Rendah Swasta (SRAS)</option>
+                        <option value="SMAS" class="lang-text" data-ms="Menengah Swasta (SMAS)" data-ar="مدرسة ثانوية خاصة (SMAS)">Menengah Swasta (SMAS)</option>
+                        <option value="PONDOK" class="lang-text" data-ms="Pondok / MMJ" data-ar="بوندوك / MMJ">Pondok / MMJ</option>
+                        <option value="TAJ" class="lang-text" data-ms="Tadika Agama Johor (TAJ)" data-ar="روضة جوهر الدينية (TAJ)">Tadika Agama Johor (TAJ)</option>
+                        <option value="PPID" class="lang-text" data-ms="Pejabat Pendidikan Islam Daerah (PPID)" data-ar="مكتب التعليم الإسلامي بالمنطقة (PPID)">Pejabat Pendidikan Islam Daerah (PPID)</option>
                     </select>
                     <button id="btn-add-school" onclick="openSchoolForm()" class="hidden items-center justify-center gap-2 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white px-4 py-2.5 rounded-xl font-medium text-sm transition-all shadow-md whitespace-nowrap">
                         <i data-lucide="plus" class="w-4 h-4"></i> <span class="lang-text" data-ms="Tambah Sekolah" data-ar="إضافة مدرسة">Tambah Sekolah</span>
