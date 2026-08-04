@@ -2170,13 +2170,34 @@
                             });
                         });
                         
-                        tbody += `<tr class="bg-slate-100 font-extrabold text-slate-800 border-t-2 border-slate-300">
-                            <td colspan="${hideInstitusi ? 1 : 2}" class="px-4 py-3 text-right uppercase text-xs tracking-wider border-r border-slate-200 sticky left-0 bg-slate-100">Jumlah Keseluruhan</td>`;
-                        displayCols.forEach(k => {
-                            let isNumCol = typeof reportColumnsAvailable[k].get(data[0] || {}) === 'number';
-                            let val = isNumCol ? totals[k] : '-';
-                            tbody += `<td class="px-4 py-3 text-center font-mono text-xs border-r border-slate-200">${val}</td>`;
-                        });
+                        tbody += `<tr class="bg-slate-100 font-extrabold text-slate-800 border-t-2 border-slate-300">`;
+                        
+                        // Lajur Pertama (Bil) - Dibiarkan kosong/tanda sempang
+                        tbody += `<td class="px-3 py-3 text-center text-slate-400 border-r border-slate-200 bg-slate-100">-</td>`;
+
+                        if (!hideInstitusi) {
+                            // Lajur Kedua (Nama Institusi)
+                            tbody += `<td class="px-4 py-3 text-right uppercase text-xs tracking-wider border-r border-slate-200 sticky left-0 bg-slate-100 z-10">Jumlah Keseluruhan</td>`;
+                            
+                            // Baki Lajur Data (Ketiga dan seterusnya)
+                            displayCols.forEach(k => {
+                                let isNumCol = typeof reportColumnsAvailable[k].get(data[0] || {}) === 'number';
+                                let val = isNumCol ? totals[k] : '-';
+                                tbody += `<td class="px-4 py-3 text-center font-mono text-xs border-r border-slate-200">${val}</td>`;
+                            });
+                        } else {
+                            // Mod senarai mendatar (flatten), lajur kedua ambil alih lajur pertama dalam senarai pilihan
+                            displayCols.forEach((k, index) => {
+                                if (index === 0) {
+                                    tbody += `<td class="px-4 py-3 text-right uppercase text-xs tracking-wider border-r border-slate-200 bg-slate-100">Jumlah Keseluruhan</td>`;
+                                } else {
+                                    let isNumCol = typeof reportColumnsAvailable[k].get(data[0] || {}) === 'number';
+                                    let val = isNumCol ? totals[k] : '-';
+                                    tbody += `<td class="px-4 py-3 text-center font-mono text-xs border-r border-slate-200">${val}</td>`;
+                                }
+                            });
+                        }
+                        
                         tbody += `</tr>`;
                     }
                 }
