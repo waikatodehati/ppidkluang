@@ -2656,19 +2656,33 @@
                     document.getElementById('t-id').value = t.id;
                     document.getElementById('t-nama').value = t.nama || '';
                     
-                    // PADANAN JANTINA JIKA TIADA REKOD:
-                    let determinedGender = t.jantina;
-                    if (!determinedGender || determinedGender === 'Tiada' || determinedGender === '') {
-                        if (t.nama.includes(' BINTI ') || t.nama.includes(' BT ') || t.nama.includes(' BTE ')) determinedGender = "Perempuan";
-                        else if (t.nama.includes(' BIN ')) determinedGender = "Lelaki";
+                    // PENYELESAIAN JANTINA KALIS HURUF BESAR/KECIL
+                    let dbJantina = (t.jantina || '').trim().toUpperCase();
+                    let determinedGender = '';
+                    
+                    if (dbJantina === 'LELAKI' || dbJantina === 'L') {
+                        determinedGender = 'Lelaki';
+                    } else if (dbJantina === 'PEREMPUAN' || dbJantina === 'P') {
+                        determinedGender = 'Perempuan';
+                    } else {
+                        // Jika dalam DB kosong atau 'Tiada', teka dari nama 'BIN'/'BINTI'
+                        let namaCek = (t.nama || '').toUpperCase();
+                        if (namaCek.includes(' BINTI ') || namaCek.includes(' BT ') || namaCek.includes(' BTE ')) {
+                            determinedGender = "Perempuan";
+                        } else if (namaCek.includes(' BIN ')) {
+                            determinedGender = "Lelaki";
+                        }
                     }
-                    document.getElementById('t-jantina').value = determinedGender || '';
+                    
+                    document.getElementById('t-jantina').value = determinedGender;
                     
                     document.getElementById('t-ic').value = t.ic || '';
                     document.getElementById('t-email').value = t.email || '';
                     document.getElementById('t-telefon').value = t.telefon || '';
-                    document.getElementById('t-gred').value = t.gred || '';
-                    document.getElementById('t-jawatan').value = t.jawatan || '';
+                    
+                    // Kalis ejaan untuk Gred dan Jawatan
+                    document.getElementById('t-gred').value = (t.gred || '').toUpperCase();
+                    document.getElementById('t-jawatan').value = (t.jawatan || '').toUpperCase();
                     
                     // Semak jika sekolah sedia ada dalam senarai dropdown
                     const schoolDropdown = document.getElementById('t-sekolah');
@@ -2679,7 +2693,16 @@
                         schoolDropdown.appendChild(opt);
                     }
                     schoolDropdown.value = t.sekolah || '';
-                    document.getElementById('t-status').value = t.status || 'Aktif';
+                    
+                    // Kalis ejaan untuk Status
+                    let dbStatus = (t.status || 'Aktif').trim().toUpperCase();
+                    let statusVal = 'Aktif';
+                    if (dbStatus === 'BERPINDAH') statusVal = 'Berpindah';
+                    else if (dbStatus === 'BERSARA') statusVal = 'Bersara';
+                    else if (dbStatus === 'BERHENTI') statusVal = 'Berhenti';
+                    else if (dbStatus === 'MENINGGAL DUNIA') statusVal = 'Meninggal Dunia';
+                    
+                    document.getElementById('t-status').value = statusVal;
                 } else {
                     showMessage("Ralat Maklumat", "Data guru tidak dijumpai atau telah korup. Sila cuba 'Refresh' pelayar anda.");
                     return; // Halang modal kosong dibuka jika data rosak
@@ -2781,6 +2804,18 @@
                     if (importedData.schools && importedData.teachers) {
                         schools = importedData.schools;
                         teachers = importedData.teachers;
+                        
+                        // --- TAMBAHAN LOGIK KEMAS KINI JANTINA AUTOMATIK ---
+                        teachers.forEach(t => {
+                            if (!t.jantina || t.jantina === 'Tiada' || String(t.jantina).trim() === '') {
+                                const namaCek = (t.nama || '').toUpperCase();
+                                if (namaCek.includes(' BINTI ') || namaCek.includes(' BT ') || namaCek.includes(' BTE ')) t.jantina = "Perempuan";
+                                else if (namaCek.includes(' BIN ')) t.jantina = "Lelaki";
+                                else t.jantina = "Tiada";
+                            }
+                        });
+                        // ----------------------------------------------------
+
                         deletedSchoolsBlacklist = importedData.deletedSchoolsBlacklist || [];
                         deletedTeachersBlacklist = importedData.deletedTeachersBlacklist || [];
                         
@@ -2901,6 +2936,18 @@
                 if (resJson && resJson.schools && resJson.teachers) {
                     schools = resJson.schools;
                     teachers = resJson.teachers;
+                    
+                    // --- TAMBAHAN LOGIK KEMAS KINI JANTINA AUTOMATIK ---
+                    teachers.forEach(t => {
+                        if (!t.jantina || t.jantina === 'Tiada' || String(t.jantina).trim() === '') {
+                            const namaCek = (t.nama || '').toUpperCase();
+                            if (namaCek.includes(' BINTI ') || namaCek.includes(' BT ') || namaCek.includes(' BTE ')) t.jantina = "Perempuan";
+                            else if (namaCek.includes(' BIN ')) t.jantina = "Lelaki";
+                            else t.jantina = "Tiada";
+                        }
+                    });
+                    // ----------------------------------------------------
+
                     if (resJson.deletedSchoolsBlacklist) deletedSchoolsBlacklist = resJson.deletedSchoolsBlacklist;
                     if (resJson.deletedTeachersBlacklist) deletedTeachersBlacklist = resJson.deletedTeachersBlacklist;
 
@@ -2981,6 +3028,17 @@
                         schools = newData;
                     } else {
                         teachers = newData;
+                        
+                        // --- TAMBAHAN LOGIK KEMAS KINI JANTINA AUTOMATIK ---
+                        teachers.forEach(t => {
+                            if (!t.jantina || t.jantina === 'Tiada' || String(t.jantina).trim() === '') {
+                                const namaCek = (t.nama || '').toUpperCase();
+                                if (namaCek.includes(' BINTI ') || namaCek.includes(' BT ') || namaCek.includes(' BTE ')) t.jantina = "Perempuan";
+                                else if (namaCek.includes(' BIN ')) t.jantina = "Lelaki";
+                                else t.jantina = "Tiada";
+                            }
+                        });
+                        // ----------------------------------------------------
                     }
 
                     saveToLocalStorage();
